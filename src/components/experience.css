@@ -1,0 +1,345 @@
+/* =========================
+   EXPERIENCE
+   ========================= */
+
+/* -------------------------
+   0) HEADER (chip + title + subtitle)
+   ------------------------- */
+
+#experience .experience-header{
+  /* cria “bloco” com respiração previsível */
+  padding-top: 6px;
+  margin-bottom: 6px;
+  display: grid;
+  gap: 18px; /* respiro apple */
+}
+
+/* chip */
+#experience .experience-header .inline-flex.items-center{
+  justify-self: center;
+  max-width: 100%;
+  border-radius: 999px;
+  padding: 10px 16px;
+  line-height: 1;
+  letter-spacing: .2px;
+
+  /* evita “cavalada” por line-height alto */
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* título */
+#experience .experience-header h2{
+  margin: 0;
+  line-height: 1.06;     
+  letter-spacing: -0.02em;
+}
+
+/* dá um “respiro” entre as duas linhas do título (prefix + highlight) */
+#experience .experience-header h2 > span{
+  display: inline-block;
+}
+
+/* subtítulo */
+#experience .experience-header p{
+  margin: 0;
+  line-height: 1.65;
+  max-width: 56ch;        /* leitura bonita */
+  opacity: .92;
+}
+
+/* ajuste fino: em telas menores, mais respiro e menos “aperto” */
+@media (max-width: 640px){
+  #experience .experience-header{
+    gap: 14px;
+  }
+  #experience .experience-header h2{
+    line-height: 1.08;
+  }
+  #experience .experience-header p{
+    line-height: 1.7;
+  }
+}
+
+/* DARK header */
+html.dark #experience .experience-header .inline-flex.items-center{
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.86);
+  box-shadow:
+    0 16px 42px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+html.dark #experience .experience-header p{
+  color: rgba(255,255,255,0.70);
+}
+
+/* LIGHT header */
+html:not(.dark) #experience .experience-header .inline-flex.items-center{
+  background: rgba(255,255,255,0.72) !important;
+  border: 1px solid rgba(15,23,42,0.14) !important;
+  color: rgba(15,23,42,0.74) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 16px 40px rgba(15,23,42,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.80);
+}
+html:not(.dark) #experience .experience-header p{
+  color: rgba(15,23,42,0.62) !important;
+}
+
+/* bolinha do chip (mantém roxo vivo) */
+html:not(.dark) #experience .experience-header .bg-purple-400{
+  background: rgba(124,58,237,0.95) !important;
+}
+
+/* -------------------------
+   1) TIMELINE STRUCTURE
+   ------------------------- */
+
+.experience-timeline{
+  position: relative;
+}
+
+/* linha vertical */
+.experience-line{
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 14px;
+  width: 1px;
+  background: rgba(31, 41, 55, 0.85);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.02);
+}
+
+.experience-item{
+  position: relative;
+  padding-left: 44px;
+}
+
+.experience-node{
+  position: absolute;
+  left: 7px;
+  top: 30px;
+  width: 18px;
+  height: 18px;
+}
+
+.experience-dot{
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: rgba(216,180,254,0.95);
+  box-shadow: 0 0 0 6px rgba(168,85,247,0.12);
+}
+
+.experience-dot-glow{
+  position: absolute;
+  inset: -3px;
+  border-radius: 999px;
+  filter: blur(12px);
+  background: rgba(168,85,247,0.40);
+  opacity: 0;
+  transition: opacity .22s ease;
+}
+
+.experience-item:hover .experience-dot-glow{
+  opacity: 1;
+}
+
+/* -------------------------
+   2) CARD (glass)
+   ------------------------- */
+
+.experience-card{
+  position: relative;
+  border-radius: 22px;
+
+  background: rgba(17, 24, 39, 0.22);
+  border: 1px solid rgba(31, 41, 55, 0.85);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  padding: 30px;
+
+  box-shadow:
+    0 18px 55px rgba(0,0,0,0.18),
+    0 0 0 1px rgba(255,255,255,0.03) inset;
+
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
+}
+
+.experience-card:hover{
+  transform: translateY(-3px);
+  border-color: rgba(168,85,247,0.22);
+  box-shadow:
+    0 22px 70px rgba(0,0,0,0.22),
+    0 0 26px rgba(168,85,247,0.10),
+    0 0 0 1px rgba(255,255,255,0.04) inset;
+}
+
+/* topo do card (título/empresa/data) */
+.experience-card .relative.flex{
+  gap: 14px !important;
+}
+
+/* parágrafo */
+.experience-card p{
+  margin-top: 14px !important;
+  line-height: 1.72 !important;
+}
+
+/* lista */
+.experience-card ul{
+  margin-top: 18px !important;
+  display: grid;
+  gap: 12px;
+}
+
+.experience-card li{
+  line-height: 1.55;
+}
+
+/* badge de data */
+.experience-card span.inline-flex.rounded-full{
+  border-color: rgba(255,255,255,0.10) !important;
+  background: rgba(255,255,255,0.06) !important;
+}
+
+/* -------------------------
+   3) LIGHT MODE — cards/timeline
+   ------------------------- */
+
+html:not(.dark) .experience-line{
+  background: rgba(15,23,42,0.18);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.75) inset;
+}
+
+html:not(.dark) .experience-dot{
+  background: rgba(124,58,237,0.92);
+  box-shadow: 0 0 0 6px rgba(124,58,237,0.12);
+}
+
+html:not(.dark) .experience-dot-glow{
+  background: rgba(124,58,237,0.28);
+}
+
+html:not(.dark) .experience-card{
+  background: rgba(255,255,255,0.64);
+  border: 1px solid rgba(15,23,42,0.12);
+  box-shadow:
+    0 18px 55px rgba(15,23,42,0.10),
+    0 0 0 1px rgba(255,255,255,0.78) inset;
+}
+
+html:not(.dark) .experience-card:hover{
+  border-color: rgba(124,58,237,0.20);
+  box-shadow:
+    0 22px 70px rgba(15,23,42,0.12),
+    0 0 22px rgba(124,58,237,0.12),
+    0 0 0 1px rgba(255,255,255,0.82) inset;
+}
+
+/* textos no light */
+html:not(.dark) #experience .text-gray-100{ color: rgba(15,23,42,0.92) !important; }
+html:not(.dark) #experience .text-gray-300{ color: rgba(15,23,42,0.72) !important; }
+html:not(.dark) #experience .text-gray-400{ color: rgba(15,23,42,0.62) !important; }
+
+/* badge data no light */
+html:not(.dark) #experience .experience-card span.text-gray-300{
+  color: rgba(15,23,42,0.70) !important;
+}
+html:not(.dark) #experience .experience-card span.inline-flex.rounded-full{
+  border-color: rgba(15,23,42,0.12) !important;
+  background: rgba(15,23,42,0.04) !important;
+}
+
+/* -------------------------
+   4) RESPONSIVO
+   ------------------------- */
+
+@media (min-width: 768px){
+  .experience-line{ left: 18px; }
+  .experience-item{ padding-left: 56px; }
+  .experience-node{ left: 11px; top: 32px; }
+}
+
+@media (max-width: 640px){
+  .experience-card{
+    padding: 22px;
+    border-radius: 18px;
+  }
+  .experience-card ul{
+    gap: 10px;
+  }
+}
+
+
+/* =========================================
+   EXPERIENCE — HEADER FIX
+   ========================================= */
+
+/* 1) NÃO empurra a seção pra baixo (remove o padding extra) */
+#experience{
+  padding-top: 0 !important;
+}
+
+/* 2) Só garante que o snap/anchor não fique por baixo do header */
+#experience{
+  scroll-margin-top: calc(var(--header-h, 96px) + 10px);
+}
+
+/* 3) Header: respiro sem “subir demais” */
+#experience .experience-header{
+  margin: 0 auto 52px !important; /* espaço antes da timeline */
+  text-align: center;
+}
+
+/* 4) Chip com respiro equilibrado */
+#experience .experience-header > .reveal{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px; /* chip -> título */
+}
+
+/* chip */
+#experience .experience-header > .reveal > span.inline-flex.items-center{
+  padding: 10px 16px !important;
+  border-radius: 999px;
+  line-height: 1;
+  gap: 10px;
+  transform: none !important;
+}
+
+/* 5) Título/sub com harmonia */
+#experience .experience-header h2{
+  margin: 0 !important;
+  line-height: 1.06 !important;
+  letter-spacing: -0.02em;
+}
+
+#experience .experience-header p{
+  margin: 12px auto 0 !important;
+  max-width: 60ch;
+  line-height: 1.65 !important;
+}
+
+/* 6) Mobile: menos respiro ainda */
+@media (max-width: 640px){
+  #experience{
+    scroll-margin-top: calc(var(--header-h, 96px) + 8px);
+  }
+  #experience .experience-header{
+    margin-bottom: 40px !important;
+  }
+  #experience .experience-header > .reveal{
+    margin-bottom: 12px;
+  }
+  #experience .experience-header p{
+    margin-top: 10px !important;
+    line-height: 1.7 !important;
+  }
+}

@@ -1,0 +1,639 @@
+/* =========================
+   HEADER / NAV / MOBILE (CLEAN)
+   - sem duplicações
+   - mantém tudo funcionando
+   - breakpoint do header: MOBILE até 1048px
+   ========================= */
+
+/* =========================
+   DESKTOP + MOBILE TOPBAR GLASS (wrapper inteiro)
+   ========================= */
+
+/* wrapper da topbar (o flex principal do header) */
+header.fixed .max-w-7xl > .flex.items-center.justify-between{
+  position: relative;
+  border-radius: 22px;
+  padding: 12px 16px;
+  gap: 16px;
+}
+
+/* camada glass atrás da topbar inteira */
+header.fixed .max-w-7xl > .flex.items-center.justify-between::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius: inherit;
+  z-index:-1;
+  pointer-events:none;
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* DARK (desktop + mobile) */
+html.dark header.fixed .max-w-7xl > .flex.items-center.justify-between::before{
+  background: rgba(10, 10, 14, 0.52);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow:
+    0 14px 40px rgba(0,0,0,.55),
+    0 0 0 1px rgba(0,0,0,.35),
+    0 0 0 1px rgba(168,85,247,.08) inset;
+}
+
+/* LIGHT (desktop + mobile) */
+html:not(.dark) header.fixed .max-w-7xl > .flex.items-center.justify-between::before{
+  background: rgba(255,255,255,0.70);
+  border: 1px solid rgba(15,23,42,0.12);
+  box-shadow:
+    0 14px 34px rgba(15,23,42,.12),
+    inset 0 1px 0 rgba(255,255,255,.80);
+}
+
+/* compacta um pouco em telas menores */
+@media (max-width: 767px){
+  header.fixed .max-w-7xl > .flex.items-center.justify-between{
+    border-radius: 18px;
+    padding: 10px 12px;
+    gap: 12px;
+  }
+  header.fixed .max-w-7xl > .flex.items-center.justify-between::before{
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+}
+
+/* =========================
+   SHIELD (se ainda existir no HTML)
+   ========================= */
+.menu-shield{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -6px;
+  height: 72px;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 0;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0.25),
+    rgba(0,0,0,0.00)
+  );
+}
+
+html:not(.dark) .menu-shield{
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.75),
+    rgba(255,255,255,0.35),
+    rgba(255,255,255,0.00)
+  );
+}
+
+/* não usar shield (topbar já tem vidro) */
+.menu-shield{ display:none !important; }
+
+/* =========================
+   FIX: ícone do tema (nunca mostrar os 2)
+   ========================= */
+html.dark #themeToggle #iconMoon{ display:inline-block !important; }
+html.dark #themeToggle #iconSun{ display:none !important; }
+
+html:not(.dark) #themeToggle #iconMoon{ display:none !important; }
+html:not(.dark) #themeToggle #iconSun{ display:inline-block !important; }
+
+html.dark #themeToggleMobile #iconMoonMobile{ display:inline-block !important; }
+html.dark #themeToggleMobile #iconSunMobile{ display:none !important; }
+
+html:not(.dark) #themeToggleMobile #iconMoonMobile{ display:none !important; }
+html:not(.dark) #themeToggleMobile #iconSunMobile{ display:inline-block !important; }
+
+/* =========================
+   DESKTOP NAV (top_menu_bar)
+   ========================= */
+nav.top_menu_bar{
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border-radius: 18px;
+  padding: 10px 14px !important;
+
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* DARK */
+html.dark nav.top_menu_bar{
+  background: rgba(18,18,22,0.55) !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
+  box-shadow:
+    0 14px 34px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.06) !important;
+}
+
+/* LIGHT */
+html:not(.dark) nav.top_menu_bar{
+  background: rgba(255,255,255,0.72) !important;
+  border: 1px solid rgba(15,23,42,0.12) !important;
+  box-shadow:
+    0 14px 30px rgba(15,23,42,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.80) !important;
+}
+
+/* =========================
+   NAV PILLS
+   ========================= */
+.nav-pill{
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  font-size: .9rem;
+  font-weight: 500;
+  color: rgb(var(--fg) / .75);
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+
+.nav-pill:hover{
+  color: rgb(var(--fg) / 1);
+  background: rgb(var(--accent) / .12);
+}
+
+/* =========================
+   DROPDOWN (Projects)
+   ========================= */
+.drop_projects{
+  background: rgba(18,18,22,0.55) !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+
+  border-radius: 18px !important;
+  padding: 8px !important;
+
+  box-shadow:
+    0 18px 44px rgba(0,0,0,0.55),
+    inset 0 1px 0 rgba(255,255,255,0.06) !important;
+}
+
+html:not(.dark) .drop_projects{
+  background: rgba(255,255,255,0.78) !important;
+  border: 1px solid rgba(15,23,42,0.12) !important;
+  box-shadow:
+    0 18px 44px rgba(15,23,42,0.14),
+    inset 0 1px 0 rgba(255,255,255,0.85) !important;
+}
+
+.drop_projects .dropdown-link{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: .75rem;
+
+  border-radius: 14px !important;
+  padding: 10px 12px !important;
+
+  background: transparent !important;
+  border: 1px solid transparent !important;
+
+  color: rgba(255,255,255,0.86) !important;
+  transition: background .18s ease, border-color .18s ease, transform .18s ease, color .18s ease;
+}
+
+html:not(.dark) .drop_projects .dropdown-link{
+  color: rgba(15,23,42,0.88) !important;
+}
+
+.drop_projects .dropdown-link:hover{
+  background: rgba(168,85,247,0.14) !important;
+  border-color: rgba(168,85,247,0.28) !important;
+  transform: translateY(-1px);
+  color: rgba(255,255,255,0.96) !important;
+}
+
+html:not(.dark) .drop_projects .dropdown-link:hover{
+  background: rgba(168,85,247,0.12) !important;
+  border-color: rgba(168,85,247,0.22) !important;
+  color: rgba(15,23,42,0.96) !important;
+}
+
+.drop_projects .dropdown-link span:last-child{
+  color: rgba(255,255,255,0.45) !important;
+}
+html:not(.dark) .drop_projects .dropdown-link span:last-child{
+  color: rgba(15,23,42,0.45) !important;
+}
+
+/* animação do dropdown */
+#projectsDropdown{ transform-origin: top center; }
+#projectsDropdown:not(.hidden){ animation: dropdownIn .14s ease-out both; }
+
+@keyframes dropdownIn{
+  from { opacity: 0; transform: translate(-50%, -6px) scale(.98); }
+  to   { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+
+/* =========================
+   ACTION BUTTONS (theme/lang/menu)
+   ========================= */
+#themeToggle,
+#langToggle,
+#menuToggle{
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+
+  display: grid;
+  place-items: center;
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+
+  transition: background .2s ease, box-shadow .2s ease, transform .2s ease, color .2s ease, border-color .2s ease;
+}
+
+/* garante que SVG siga a cor */
+#themeToggle svg,
+#menuToggle svg{ display:block; }
+#themeToggle svg *,
+#menuToggle svg *{ stroke: currentColor; }
+
+/* DARK */
+html.dark #themeToggle,
+html.dark #langToggle,
+html.dark #menuToggle{
+  background: rgba(18,18,22,0.62) !important;
+  border: 1px solid rgba(255,255,255,0.14) !important;
+  color: rgba(255,255,255,0.95) !important;
+
+  box-shadow:
+    0 14px 36px rgba(0,0,0,0.55),
+    0 0 0 1px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.08) !important;
+}
+
+html.dark #themeToggle:hover,
+html.dark #langToggle:hover,
+html.dark #menuToggle:hover{
+  transform: translateY(-1px);
+  background: rgba(28,28,34,0.76) !important;
+  box-shadow:
+    0 18px 44px rgba(0,0,0,0.65),
+    0 0 0 1px rgba(0,0,0,0.40),
+    0 0 18px rgba(168,85,247,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.10) !important;
+}
+
+/* LIGHT */
+html:not(.dark) #themeToggle,
+html:not(.dark) #langToggle,
+html:not(.dark) #menuToggle{
+  background: rgba(255,255,255,0.75) !important;
+  border: 1px solid rgba(15,23,42,0.14) !important;
+  color: rgba(15,23,42,0.85) !important;
+
+  box-shadow:
+    0 14px 30px rgba(15,23,42,0.14),
+    inset 0 1px 0 rgba(255,255,255,0.85) !important;
+}
+
+html:not(.dark) #themeToggle:hover,
+html:not(.dark) #langToggle:hover,
+html:not(.dark) #menuToggle:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.86) !important;
+  box-shadow:
+    0 18px 36px rgba(15,23,42,0.16),
+    0 0 0 1px rgba(168,85,247,0.14),
+    inset 0 1px 0 rgba(255,255,255,0.90) !important;
+}
+
+#langToggle #langLabel{
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+/* CTA roxo mantém branco no LIGHT também */
+html:not(.dark) #talkBtn,
+html:not(.dark) a[href="#contact"].bg-purple-600,
+html:not(.dark) a[href="#contact"].bg-purple-700{
+  color: #fff !important;
+}
+
+/* =========================
+   Header avatar — mini hero ring
+   ========================= */
+.header-avatar{
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+}
+
+.header-avatar-ring{
+  width: 100%;
+  height: 100%;
+  padding: 2px;
+  border-radius: 999px;
+
+  background: conic-gradient(
+    from 210deg,
+    #a855f7,
+    #7c3aed,
+    #5906a7,
+    #a855f7
+  );
+
+  box-shadow:
+    0 6px 18px rgba(168,85,247,.35),
+    0 2px 8px rgba(0,0,0,.25);
+}
+
+.header-avatar-ring img{
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  object-fit: cover;
+  display: block;
+  background: #000;
+}
+
+/* =========================
+   MOBILE DRAWER — base
+   ========================= */
+#mobileMenu{ z-index: 60; } /* o JS controla abrir/fechar via .hidden */
+#mobileBackdrop{ transition: opacity 200ms ease; }
+
+#mobileDrawer{
+  transition: transform 300ms ease;
+  background: rgb(var(--panel-soft) / .9);
+  color: rgba(255,255,255,0.92);
+}
+
+/* links */
+.mobile-row,
+.mobile-subrow,
+.mobile-cta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;
+  text-decoration:none;
+
+  padding: 14px 14px;
+  border-radius: 14px;
+
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+
+  color: rgba(255,255,255,0.88);
+  font-weight: 600;
+  letter-spacing: .2px;
+
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.mobile-row:hover,
+.mobile-subrow:hover,
+.mobile-cta:hover{
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(168,85,247,0.35);
+  color: rgba(255,255,255,0.96);
+  transform: translateY(-1px);
+}
+
+.mobile-subrow{
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.03);
+}
+
+.mobile-cta{
+  background: rgba(168,85,247,0.16);
+  border-color: rgba(168,85,247,0.35);
+}
+.mobile-cta:hover{
+  background: rgba(168,85,247,0.22);
+  border-color: rgba(168,85,247,0.55);
+}
+
+/* arrows (único, sem duplicar) */
+.mobile-arrow{
+  color: rgba(168,85,247,0.70) !important;
+  font-weight: 800;
+  letter-spacing: .2px;
+  opacity: .9;
+  transition: color 160ms ease, transform 160ms ease, opacity 160ms ease;
+}
+
+.mobile-row:hover .mobile-arrow,
+.mobile-subrow:hover .mobile-arrow,
+.mobile-cta:hover .mobile-arrow{
+  color: rgba(168,85,247,0.95) !important;
+  transform: translateX(2px);
+  opacity: 1;
+}
+
+/* chevron do Projects (accordion) */
+#mobileProjectsChevron{
+  color: rgba(168,85,247,0.75) !important;
+}
+html:not(.dark) #mobileProjectsChevron{
+  color: rgba(124,58,237,0.75) !important;
+}
+#mobileProjectsChevron *{ stroke: currentColor !important; }
+
+/* botões redondos no drawer */
+#mobileDrawer button.h-11.w-11{
+  border-color: rgba(255,255,255,0.12) !important;
+  background: rgba(255,255,255,0.06) !important;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+#mobileDrawer button.h-11.w-11:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.10) !important;
+  border-color: rgba(168,85,247,0.40) !important;
+  color: rgba(168,85,247,0.95) !important;
+}
+
+/* MOBILE DRAWER — LIGHT MODE */
+html:not(.dark) #mobileBackdrop{
+  background: rgba(0,0,0,0.35) !important;
+  backdrop-filter: blur(6px);
+}
+
+html:not(.dark) #mobileDrawer{
+  background: rgba(255,255,255,0.82) !important;
+  border-left: 1px solid rgba(17,24,39,0.08) !important;
+  box-shadow: -30px 0 80px rgba(0,0,0,0.18) !important;
+  color: rgba(17,24,39,0.92);
+}
+
+html:not(.dark) #mobileDrawer h3{
+  color: rgba(17,24,39,0.92) !important;
+}
+
+html:not(.dark) .mobile-row,
+html:not(.dark) .mobile-subrow,
+html:not(.dark) .mobile-cta{
+  border: 1px solid rgba(17,24,39,0.10);
+  background: rgba(17,24,39,0.04);
+  color: rgba(17,24,39,0.88);
+}
+
+html:not(.dark) .mobile-row:hover,
+html:not(.dark) .mobile-subrow:hover,
+html:not(.dark) .mobile-cta:hover{
+  background: rgba(17,24,39,0.06);
+  border-color: rgba(168,85,247,0.35);
+  color: rgba(17,24,39,0.96);
+}
+
+html:not(.dark) .mobile-arrow{
+  color: rgba(124,58,237,0.70) !important;
+}
+
+html:not(.dark) #mobileDrawer button.h-11.w-11{
+  border-color: rgba(17,24,39,0.12) !important;
+  background: rgba(17,24,39,0.05) !important;
+  color: rgba(17,24,39,0.82) !important;
+}
+html:not(.dark) #mobileDrawer button.h-11.w-11:hover{
+  background: rgba(17,24,39,0.08) !important;
+  border-color: rgba(168,85,247,0.35) !important;
+  color: rgba(168,85,247,0.95) !important;
+}
+
+/* CTA FINAL do drawer: roxo sempre */
+#mobileDrawer a.w-full.h-14.rounded-full{
+  background: rgba(168,85,247,0.95) !important;
+  color: #fff !important;
+  border: 1px solid rgba(168,85,247,0.55) !important;
+
+  box-shadow:
+    0 16px 40px rgba(168,85,247,0.22),
+    0 10px 26px rgba(0,0,0,0.18) !important;
+}
+
+#mobileDrawer a.w-full.h-14.rounded-full:hover{
+  background: rgba(124,58,237,0.98) !important;
+  border-color: rgba(124,58,237,0.65) !important;
+  transform: translateY(-1px);
+}
+
+#mobileDrawer a.w-full.h-14.rounded-full svg,
+#mobileDrawer a.w-full.h-14.rounded-full svg *{
+  stroke: currentColor !important;
+}
+
+/* =========================
+   NAV ACTIVE / HOVER underline
+   ========================= */
+header nav[aria-label="Primary"] a[data-nav]{
+  position: relative;
+  padding-bottom: 10px;
+}
+
+header nav[aria-label="Primary"] a[data-nav]::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 2px;
+
+  width: 26px;
+  height: 2px;
+  border-radius: 999px;
+
+  background: linear-gradient(90deg, #a855f7, #7c3aed);
+
+  opacity: 0;
+  transform: translateX(-50%) scaleX(0.6);
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+header nav[aria-label="Primary"] a[data-nav]:hover::after{
+  opacity: .55;
+  transform: translateX(-50%) scaleX(1);
+}
+
+header nav[aria-label="Primary"] a[data-nav].is-active::after{
+  opacity: .85;
+  transform: translateX(-50%) scaleX(1);
+}
+
+header nav[aria-label="Primary"] a[data-nav].is-active{
+  color: rgba(255,255,255,0.95);
+}
+
+html:not(.dark) header nav[aria-label="Primary"] a[data-nav].is-active{
+  color: rgba(15,23,42,0.92);
+}
+
+/* =========================================
+   BREAKPOINT DO HEADER: MOBILE ATÉ 1048px
+   - evita “hamburger + nav” ao mesmo tempo
+   - NÃO quebra o JS do drawer (.hidden)
+   ========================================= */
+
+/* DESKTOP: 1049px+ */
+@media (min-width: 1049px){
+  /* nav desktop aparece */
+  nav.top_menu_bar{ display: flex !important; }
+
+  /* CTA desktop aparece (Let’s Talk / Vamos conversar do header) */
+  header a.hidden.md\:inline-flex{ display: inline-flex !important; }
+
+  /* hamburger some */
+  #menuToggle{ display: none !important; }
+
+  /* garante que overlay não fique ativo em desktop */
+  #mobileMenu{ display: none !important; }
+}
+
+/* MOBILE: até 1048.98px (pega width fracionado do DevTools/zoom) */
+@media (max-width: 1048.98px){
+  /* some nav desktop */
+  nav.top_menu_bar{ display: none !important; }
+
+  /* some CTA desktop */
+  header a.hidden.md\:inline-flex{ display: none !important; }
+
+  /* aparece hamburger */
+  #menuToggle{
+    display: grid !important;
+    place-items: center !important;
+  }
+
+  /* NÃO force display no #mobileMenu aqui:
+     o JS precisa controlar via class .hidden */
+  /* #mobileMenu{ display:block !important; }  <-- NÃO */
+}
+
+/* segurança extra contra classes md:* vazando no header */
+@media (max-width: 1048.98px){
+  header .md\\:flex{ display: none !important; }
+  header .md\\:inline-flex{ display: none !important; }
+  header .md\\:hidden{ display: initial !important; }
+}
+
+/* =========================================
+   MOBILE MENU abrir até 1048px
+   - seu JS tira/coloca a classe "hidden"
+   - Tailwind usa "md:hidden" (>=768) pra esconder
+   - aqui vence o md:hidden só quando estiver aberto
+   ========================================= */
+
+/* Até 1048px: se #mobileMenu NÃO estiver hidden, ele deve aparecer */
+@media (max-width: 1049px){
+  #mobileMenu:not(.hidden){
+    display: block !important;
+  }
+}

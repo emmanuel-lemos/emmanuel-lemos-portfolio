@@ -1,0 +1,21 @@
+# Env
+.env
+.env.local
+.env.*
+!.env.example
+
+# Local configs (nunca versionar)
+public/js/x/
+public/js/config.local.js
+public/js/i18n.local.js
+assets/images/XX/
+
+# Build
+dist/
+node_modules/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

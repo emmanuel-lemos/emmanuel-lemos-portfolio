@@ -1,0 +1,111 @@
+/* =========================================================
+   OVERRIDES
+   (segura compat durante a migração sem quebrar markup Tailwind)
+   ========================================================= */
+
+/* 1) Evita scroll lateral por qualquer overflow (segurança) */
+html, body{
+  overflow-x: hidden;
+}
+
+/* 2) Altura base */
+html, body{
+  height: 100%;
+}
+
+/* 3) Esconde scrollbar visual (se usa .scrollbar-none) */
+.scrollbar-none::-webkit-scrollbar{
+  display: none;
+}
+.scrollbar-none{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* 4) Dropdown animation (usado no header) */
+#projectsDropdown{
+  transform-origin: top center;
+}
+
+#projectsDropdown:not(.hidden){
+  animation: dropdownIn .14s ease-out both;
+}
+
+@keyframes dropdownIn{
+  from{
+    opacity: 0;
+    transform: translate(-50%, -6px) scale(.98);
+  }
+  to{
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+/* 5) Reveal helpers  */
+.reveal.is-in{
+  will-change: transform, opacity, filter;
+}
+
+/* 6) Ajustes pontuais do layout (seções) */
+#contact{
+  scroll-margin-top: 120px;
+}
+
+/* 7) Ícones SVG: garante que herdem cor quando usados com "fill: currentColor" */
+svg{
+  fill: currentColor;
+}
+
+/* 8) Tailwind “fix” (caso algum build/merge traga resets duplicados) */
+img, svg, video, canvas, audio, iframe, embed, object{
+  vertical-align: middle;
+}
+
+/* 9) Se existir qualquer coisa "antiga" que ainda dependa disso, mantém */
+.pointer-events-none{
+  pointer-events: none;
+}
+
+/* 10) Prefers-reduced-motion (fallback geral) */
+@media (prefers-reduced-motion: reduce){
+  *{
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* =========================
+   LIGHT: overrides cirúrgicos (SEM matar o Tailwind)
+   ========================= */
+
+/* 1) Header: deixe o container herdar a cor do tema no light */
+html:not(.dark) header {
+  color: rgba(17,24,39,.92);
+}
+
+/* 2) Só o NOME do header (sua classe .header_name) */
+html:not(.dark) header .header_name{
+  color: rgba(17,24,39,.92) !important;
+}
+
+
+/* 4) Hero: se quer o NOME/heading do hero escuro no light,
+   mire em um seletor que não seja "tudo que é text-white" */
+html:not(.dark) #home .hero-title,
+html:not(.dark) #home .hero-subtitle{
+  color: rgba(17,24,39,.92) !important;
+}
+
+/* Se NÃO tem classes hero-titl e/hero-subtitle, use um alvo mais seguro:
+   exemplo: apenas headings dentro do bloco do hero (evita pegar botão) */
+html:not(.dark) #home h1,
+html:not(.dark) #home h2{
+  color: rgba(17,24,39,.92);
+}
+
+/* 5) CTA que precisa continuar branco no light (ex.: botão roxo) */
+html:not(.dark) #home .home_hire{
+  color: #fff !important;
+}
+

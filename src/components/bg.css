@@ -1,0 +1,67 @@
+/* =========================
+   BG GLASS — STATIC (DARK + LIGHT)
+   Sem animação, sem blobs gigantes com blur.
+   ========================= */
+
+#bgGlass{
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* camada base */
+html.dark #bgGlass{
+  background: #07060c;
+}
+
+html:not(.dark) #bgGlass{
+  background: #fdfcff; /* branco “quente” */
+}
+
+/* Glow estático com gradients (barato) */
+#bgGlass::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  pointer-events:none;
+
+  /* evita criar uma layer gigante complexa */
+  transform: translateZ(0);
+  will-change: auto;
+}
+
+/* DARK — roxos sobre preto */
+html.dark #bgGlass::before{
+  opacity: 1;
+  background:
+    radial-gradient(900px 650px at 20% 70%,
+      rgba(168,85,247,.28), transparent 65%),
+    radial-gradient(850px 600px at 85% 25%,
+      rgba(124,58,237,.22), transparent 68%),
+    radial-gradient(1000px 700px at 55% 90%,
+      rgba(168,85,247,.16), transparent 70%);
+}
+
+/* LIGHT — roxos suaves sobre branco */
+html:not(.dark) #bgGlass::before{
+  opacity: 1;
+  background:
+    radial-gradient(1000px 740px at 22% 72%,
+      rgba(168,85,247,.16), transparent 70%),
+    radial-gradient(980px 700px at 82% 28%,
+      rgba(124,58,237,.12), transparent 72%),
+    radial-gradient(1100px 800px at 55% 88%,
+      rgba(168,85,247,.10), transparent 74%);
+}
+
+/* Grain (ok). Se ainda pesar, reduza opacity para .03 */
+#bgGlass .grain{
+  position:absolute;
+  inset:0;
+  opacity:.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+  background-size: 260px 260px;
+}

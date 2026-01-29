@@ -1,0 +1,25 @@
+/* Tailwind v4 */
+@import "tailwindcss";
+
+@source "../index.html";
+@source "../src/**/*.{js,ts,jsx,tsx}";
+@source "../**/*.html";
+
+/* base do projeto */
+@import "./tokens.css";
+@import "./base.css";
+
+/* componentes */
+@import "./components/header.css";
+@import "./components/orb.css";
+@import "./components/carousel.css";
+@import "./components/contact.css";
+@import "./components/hero.css";
+@import "./components/marquee.css";
+@import "./components/experience.css";
+@import "./components/bg.css";
+
+/* seções/efeitos gerais */
+@import "./themes.css";
+@import "./overrides.css";
+

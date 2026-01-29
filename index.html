@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emmanuel Lemos - Portfolio</title>
+</head>
+<body class="min-h-screen overflow-x-hidden bg-white text-black dark:bg-black dark:text-white">
+<div id="bgGlass">
+  <div class="grain"></div>
+</div>
+<header class="fixed top-4 left-0 right-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 md:px-8 relative">
+      <div class="menu-shield" aria-hidden="true"></div>
+    <!-- TOP BAR -->
+    <div class="flex items-center justify-between gap-3 relative">
+      <!-- Brand -->
+      <a href="#home" class="flex items-center gap-3 shrink-0">
+        <div class="header-avatar">
+          <div class="header-avatar-ring">
+            <img
+              src="/assets/images/profile_teste_thumb.jpg"
+              alt="Emmanuel photo"
+            />
+          </div>
+        </div>
+        <span class="hidden sm:inline text-white font-semibold tracking-tight header_name">
+          Emmanuel Lemos
+        </span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav
+        class="top_menu_bar hidden md:flex items-center gap-2 px-3 py-2 rounded-full
+               border border-white/10 bg-black/30 backdrop-blur-xl
+               shadow-[0_10px_40px_rgba(0,0,0,0.35)]"
+        aria-label="Primary"
+      >
+        <a class="nav-pill nav_text" href="#home" data-nav="home">Home</a>
+        <a class="nav-pill nav_text" href="#skills" data-nav="skills">Skills</a>
+        <a class="nav-pill nav_text" href="#experience" data-nav="experience">Experience</a>
+
+        <!-- Projects dropdown (desktop) -->
+        <div class="relative">
+          <button
+            type="button"
+            class="nav_text nav-pill inline-flex items-center gap-2"
+            id="projectsDropdownBtn"
+            aria-haspopup="menu"
+            aria-expanded="false"
+            data-nav="projects"
+          >
+            Projects
+            <svg
+              class="w-4 h-4 opacity-80 transition-transform"
+              id="projectsChevron"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </button>
+
+            <div
+            id="projectsDropdown"
+            role="menu"
+            aria-labelledby="projectsDropdownBtn"
+            class="drop_projects hidden absolute top-[calc(100%+10px)] left-0 mt-2
+                    w-[190px] rounded-2xl border border-white/10
+                    bg-black/45 backdrop-blur-xl
+                    shadow-[0_14px_45px_rgba(0,0,0,0.55)]
+                    p-1.5"
+            >
+            <a role="menuitem" class="dropdown-link project_nav" href="#design-projects">
+                <span>Design Projects</span><span class="text-white/40"></span>
+            </a>
+            <a role="menuitem" class="dropdown-link project_nav" href="#dev-projects">
+                <span>Dev Projects</span><span class="text-white/40"></span>
+            </a>
+
+            </div>
+        </div>
+
+        <a class="nav_text nav-pill" href="#contact" data-nav="contact">Contact</a>
+      </nav>
+
+      <!-- Right actions -->
+      <div class="flex items-center gap-2 shrink-0">
+        <!-- Theme toggle -->
+<button
+  id="themeToggle"
+  type="button"
+  class="h-11 w-11 rounded-full grid place-items-center
+         border border-white/10 bg-black/30 backdrop-blur-xl
+         shadow-[0_10px_40px_rgba(0,0,0,0.35)]
+         text-white/80 hover:text-purple-300 transition"
+  aria-label="Toggle theme"
+>
+  <svg id="iconMoon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+       fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       class="w-5 h-5">
+    <path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8Z"></path>
+  </svg>
+
+  <svg id="iconSun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+       fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       class="w-5 h-5 hidden">
+    <circle cx="12" cy="12" r="4"></circle>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+  </svg>
+</button>
+
+<!-- Language toggle (desktop) -->
+<button
+  id="langToggle"
+  type="button"
+  class=" h-11 w-11 rounded-full grid place-items-center
+         border border-white/10 bg-black/30 backdrop-blur-xl
+         shadow-[0_10px_40px_rgba(0,0,0,0.35)]
+         text-white/80 hover:text-purple-300 transition"
+  aria-label="Toggle language"
+  aria-pressed="false"
+>
+  <span id="langLabel" class="text-xs font-semibold tracking-wide">EN</span>
+</button>
+
+        <!-- Desktop CTA -->
+        <a
+          href="#contact"
+          class="hidden md:inline-flex items-center gap-2 h-11 px-5 rounded-full
+                 bg-purple-600 hover:bg-purple-700 transition
+                 text-white font-medium shadow-[0_18px_60px_rgba(168,85,247,0.25)]"
+        >
+          Let’s Talk <span class="opacity-90">→</span>
+        </a>
+
+        <!-- Mobile hamburger -->
+        <button
+          id="menuToggle"
+          type="button"
+          class="md:hidden h-11 w-11 rounded-full grid place-items-center
+                 border border-white/10 bg-black/30 backdrop-blur-xl
+                 shadow-[0_10px_40px_rgba(0,0,0,0.35)]
+                 text-white/80 hover:text-purple-300 transition"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+               class="w-6 h-6">
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+<!-- MOBILE DRAWER -->
+<div
+  id="mobileMenu"
+  class="md:hidden fixed inset-0 z-[60] hidden"
+  aria-hidden="true"
+>
+  <!-- backdrop (clicável pra fechar) -->
+  <div
+    id="mobileBackdrop"
+    class="absolute inset-0 bg-black/70 backdrop-blur-sm opacity-0 transition-opacity duration-200"
+  ></div>
+
+  <!-- drawer -->
+  <div
+    id="mobileDrawer"
+    class="absolute top-0 right-0 h-full w-[92%] max-w-[420px]
+           bg-[#070A10]/90 backdrop-blur-2xl
+           border-l border-white/10
+           shadow-[-30px_0_80px_rgba(0,0,0,0.6)]
+           translate-x-full transition-transform duration-300 ease-out"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Mobile menu"
+  >
+<!-- Header -->
+<div class="px-6 pt-6 pb-5 flex items-center justify-between">
+  <h3 class="text-xl font-semibold text-white">Menu</h3>
+
+  <div class="flex items-center gap-2">
+  <!-- Theme toggle (mobile) -->
+  <button
+    id="themeToggleMobile"
+    type="button"
+    class="h-11 w-11 rounded-full grid place-items-center
+           border border-white/10 bg-white/5
+           text-white/80 hover:text-purple-300 transition"
+    aria-label="Toggle theme"
+  >
+    <svg id="iconMoonMobile" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         class="w-5 h-5">
+      <path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8Z"></path>
+    </svg>
+
+    <svg id="iconSunMobile" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         class="w-5 h-5 hidden">
+      <circle cx="12" cy="12" r="4"></circle>
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+    </svg>
+  </button>
+
+  <!-- Language toggle (mobile) -->
+  <button
+    id="langToggleMobile"
+    type="button"
+    class="h-11 w-11 rounded-full grid place-items-center
+           border border-white/10 bg-white/5
+           text-white/80 hover:text-purple-300 transition"
+    aria-label="Toggle language"
+    aria-pressed="false"
+  >
+    <span id="langLabelMobile" class="text-xs font-semibold tracking-wide">EN</span>
+  </button>
+
+  <!-- Close -->
+  <button
+    id="mobileClose"
+    type="button"
+    class="h-11 w-11 rounded-full grid place-items-center
+           border border-white/10 bg-white/5
+           text-white/80 hover:text-purple-300 transition"
+    aria-label="Close menu"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         class="w-6 h-6">
+      <path d="M18 6 6 18"></path>
+      <path d="M6 6 18 18"></path>
+    </svg>
+  </button>
+</div>
+</div>
+
+    <div class="h-px bg-white/10"></div>
+
+    <!-- Links -->
+    <nav class="px-6 pt-6 space-y-4" aria-label="Mobile navigation">
+      <a class="mobile-row" href="#home">
+        <span>Home</span>
+        <span class="mobile-arrow" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+</span>
+      </a>
+
+      <a class="mobile-row" href="#skills">
+        <span>Skills</span>
+        <span class="mobile-arrow" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+</span>
+      </a>
+
+      <a class="mobile-row" href="#experience">
+        <span>Experience</span>
+        <span class="mobile-arrow" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+</span>
+      </a>
+
+      <!-- Projects accordion -->
+      <button
+        id="mobileProjectsBtn"
+        type="button"
+        class="mobile-row w-full"
+        aria-expanded="false"
+      >
+        <span>Projects</span>
+        <svg id="mobileProjectsChevron" class="w-6 h-6 text-white/60 transition-transform"
+             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m6 9 6 6 6-6"></path>
+        </svg>
+      </button>
+
+      <div id="mobileProjectsPanel" class="hidden pl-3 space-y-3">
+      <a class="mobile-subrow" href="#design-projects"><span>Design Projects</span><span class="mobile-arrow" aria-hidden="true">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</span></a>
+      <a class="mobile-subrow" href="#dev-projects"><span>Dev Projects</span><span class="mobile-arrow" aria-hidden="true">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</span></a>
+      </div>
+
+      <a class="mobile-cta" href="#contact">
+        <span>Contact</span>
+        <span class="mobile-arrow" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+</span>
+      </a>
+    </nav>
+
+    <!-- Footer -->
+    <div class="absolute left-0 right-0 bottom-0 px-6 pb-8">
+      <div class="h-px bg-white/10 mb-6"></div>
+<a
+  href="#contact"
+  class="w-full h-14 rounded-full bg-white/90 text-black
+         flex items-center justify-center gap-3 font-semibold
+         hover:bg-white transition"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+       fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round"
+       class="w-6 h-6">
+    <path d="M4 6h16"></path>
+    <path d="m4 6 8 7 8-7"></path>
+    <path d="M4 18h16" opacity="0"></path>
+  </svg>
+
+  <span class="cta-text">Get in Touch</span>
+</a>
+
+    </div>
+  </div>
+</div>
+</header>
+
+<main class="h-screen overflow-y-scroll scroll-smooth snap-y snap-mandatory overflow-x-hidden">
+
+<section id="home" class="snap-start h-screen w-full border-t border-gray-800 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto h-full w-full px-6 md:px-12 lg:px-24 pt-24 md:pt-28">
+    <div class="h-full grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+
+      <!-- LEFT -->
+      <div class="space-y-10">
+        <!-- badge -->
+        <div class="reveal" style="--d: 0ms">
+          <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-800 bg-white/5 text-sm text-gray-200 leading-none align-middle">
+            <span class="inline-block w-2 h-2 rounded-full bg-purple-400 shrink-0"></span>
+            <span class="badge-text whitespace-nowrap leading-none">Available for new projects</span>
+          </span>
+        </div>
+
+        <!-- intro -->
+        <div class="space-y-6">
+          <p class="reveal text-gray-300 text-lg md:text-xl" style="--d: 80ms">
+            Hey, I'm <span class="font-semibold text-white">Emmanuel</span> 👋
+          </p>
+
+          <h1 class="reveal text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight" style="--d: 160ms">
+          <span class="block">Designer <span class="text-purple-400">&</span></span>
+          <span class="block">Desenvolvedor</span>
+          </h1>
+
+          <p class="reveal text-gray-400 text-base md:text-lg max-w-xl" style="--d: 240ms">
+            Bringing ideas to life with <span class="text-gray-200 font-medium">clean code</span>,
+            modern design, and powerful user experiences.
+          </p>
+        </div>
+
+        <!-- TECH MARQUEE (infinito real, sem sobreposição) -->
+        <div class="reveal pt-2 max-w-xl" style="--d: 320ms">
+          <div class="icons-marquee" data-marquee aria-label="Tech icons marquee">
+            <div class="icons-track">
+              <!-- SET 1 -->
+              <div class="icons-set" data-set>
+                <!-- TROQUE AQUI os src/alt -->
+                <span class="icon_set_item"><svg><use href="/assets/icons/icons.svg#photoshop"></use></svg></span>
+                <span class="icon_set_item"><svg><use href="/assets/icons/icons.svg#premiere"></use></svg></span>
+                <span class="icon_set_item"><svg><use href="/assets/icons/icons.svg#python"></use></svg></span>
+                <span class="icon_set_item"><svg><use href="/assets/icons/icons.svg#javascript"></use></svg></span>
+                <span class="icon_set_item"><svg><use href="/assets/icons/icons.svg#html5"></use></svg></span>
+                <span class="icon_set_item"><svg><use href="/assets/icons/icons.svg#css3"></use></svg></span>
+                <span class="icon_set_item"><svg><use href="/assets/icons/icons.svg#git"></use></svg></span>              
+                <span class="icon_set_item"><svg><use href="/assets/icons/icons.svg#github"></use></svg></span>                      
+                <span class="icon_set_item"><svg><use href="/assets/icons/icons.svg#vscode"></use></svg></span>        
+            </div>
+
+              <!-- SET 2 (cópia do SET 1) -->
+              <div class="icons-set" aria-hidden="true">
+                <span class="icon_set_item"><svg><use href="/assets/icons/icons.svg#photoshop"></use></svg></span>
+                <span class="icon_set_item"><svg><use href="/assets/icons/icons.svg#premiere"></use></svg></span>
+                <span class="icon_set_item"><svg><use href="/assets/icons/icons.svg#python"></use></svg></span>
+                <span class="icon_set_item"><svg><use href="/assets/icons/icons.svg#javascript"></use></svg></span>
+                <span class="icon_set_item"><svg><use href="/assets/icons/icons.svg#html5"></use></svg></span>
+                <span class="icon_set_item"><svg><use href="/assets/icons/icons.svg#css3"></use></svg></span>
+                <span class="icon_set_item"><svg><use href="/assets/icons/icons.svg#git"></use></svg></span>              
+                <span class="icon_set_item"><svg><use href="/assets/icons/icons.svg#github"></use></svg></span>                      
+                <span class="icon_set_item"><svg><use href="/assets/icons/icons.svg#vscode"></use></svg></span>    
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="reveal flex flex-wrap gap-4 pt-2" style="--d: 400ms">
+          <a href="#contact"
+             class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-700 transition font-medium text-white shadow-sm home_hire">
+            Hire Me <span aria-hidden="true">✦</span>
+          </a>
+
+          <a
+            id="cvLink"
+            download
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-gray-700 hover:border-purple-500 transition text-gray-100 bg-white/5"
+            data-i18n="hero_cv"
+            >
+            Download CV
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="opacity-90">
+              <path d="M12 3v10m0 0 4-4m-4 4-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 17v3h16v-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- social -->
+        <div class="reveal pt-6" style="--d: 480ms">
+          <p class="text-sm text-gray-500 mb-3">Follow my work</p>
+          <div class="social flex items-center gap-4 text-gray-400">
+            <a href="#" class="hover:text-white  transition" aria-label="GitHub">
+              <span class="inline-flex w-10 h-10 rounded-full border border-gray-800 bg-white/5 items-center justify-center">GH</span>
+            </a>
+            <a href="#" class="hover:text-white transition" aria-label="Twitter/X">
+              <span class="inline-flex w-10 h-10 rounded-full border border-gray-800 bg-white/5 items-center justify-center">X</span>
+            </a>
+            <a href="#" class="hover:text-white transition" aria-label="LinkedIn">
+              <span class="inline-flex w-10 h-10 rounded-full border border-gray-800 bg-white/5 items-center justify-center">in</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+    <div class="relative flex justify-center lg:justify-end mt-4 sm:mt-6 lg:mt-0 lg:pt-6">
+    <div class="hero-orbit reveal-orbit hero-float" style="--d: 220ms">
+        <div class="hero-photo-ring">
+        <div class="hero-photo">
+            <img 
+            id="avatarImg"
+            src="/assets/images/profile_teste.jpg"
+            alt="Emmanuel photo"
+            class="w-full h-full object-cover" />
+        </div>
+        </div>
+    </div>
+    </div>
+
+    </div>
+  </div>
+
+  <!-- Scroll to explore -->
+  <a href="#about"
+     class="scroll-indicator reveal absolute left-1/2 -translate-x-1/2 bottom-6 flex flex-col items-center gap-2 text-gray-500 hover:text-gray-300 transition"
+     style="--d: 650ms"
+     aria-label="Scroll to explore">
+    <span class="text-xs tracking-widest uppercase">Scroll to explore</span>
+    <span class="inline-flex w-10 h-10 rounded-full border border-gray-800 bg-white/5 items-center justify-center">
+      ↓
+    </span>
+  </a>
+</section>
+
+<section id="skills" class="snap-start min-h-screen w-full border-t border-gray-800 relative overflow-hidden">
+  <div class="min-h-screen flex flex-col">
+    <div class="max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-24 pt-28 pb-28 flex-1">
+      <div class="space-y-16">
+
+        <!-- HEADER (hero-like) -->
+        <header class="skills-header space-y-6 max-w-3xl">
+          <div class="reveal" style="--d: 0ms">
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-800 bg-white/5 text-sm text-gray-200">
+              <span class="inline-block w-2 h-2 rounded-full bg-purple-400"></span>
+                <span class="badge-text">My toolset</span>
+                </span>
+            </span>
+          </div>
+
+          <div class="space-y-3">
+            <h2 class="reveal text-4xl md:text-5xl font-extrabold leading-[1.05] tracking-tight" style="--d: 90ms">
+              Skills <span class="text-purple-400">&</span> Stack
+            </h2>
+
+            <p class="reveal text-gray-400 text-base md:text-lg max-w-2xl" style="--d: 180ms">
+              A curated snapshot of the technologies I use to build modern products —
+              from <span class="text-gray-200 font-medium">clean backend architecture</span>
+              to <span class="text-gray-200 font-medium">interface design</span>.
+            </p>
+          </div>
+        </header>
+
+        <!-- ORBE (melhor enquadramento) -->
+        <div class="skills-orb-wrap grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+
+          <div class="reveal flex flex-col items-center lg:items-start gap-4" style="--d: 260ms">
+            <div class="orb orb-xl orb-float" aria-hidden="true">
+              <span class="orb-ring"></span>
+
+              <div class="orb-icons">
+                <span class="orb-item">
+                  <span class="orb-icon"><svg><use href="/assets/icons/icons.svg#javascript"></use></svg></span>
+                </span>
+
+                <span class="orb-item">
+                  <span class="orb-icon"><svg><use href="/assets/icons/icons.svg#typescript"></use></svg></span>
+                </span>
+
+                <span class="orb-item">
+                  <span class="orb-icon"><svg><use href="/assets/icons/icons.svg#photoshop"></use></svg></span>
+                </span>
+
+                <span class="orb-item">
+                  <span class="orb-icon"><svg><use href="/assets/icons/icons.svg#nextjs"></use></svg></span>
+                </span>
+
+                <span class="orb-item">
+                  <span class="orb-icon"><svg><use href="/assets/icons/icons.svg#tailwind"></use></svg></span>
+                </span>
+
+                <span class="orb-item">
+                  <span class="orb-icon"><svg><use href="/assets/icons/icons.svg#premiere"></use></svg></span>
+                </span>
+
+                <span class="orb-item">
+                  <span class="orb-icon"><svg><use href="/assets/icons/icons.svg#python"></use></svg></span>
+                </span>
+
+                <span class="orb-item">
+                  <span class="orb-icon"><svg><use href="/assets/icons/icons.svg#docker"></use></svg></span>
+                </span>
+
+                <span class="orb-item">
+                  <span class="orb-icon"><svg><use href="/assets/icons/icons.svg#postgresql"></use></svg></span>
+                </span>
+
+                <span class="orb-item">
+                  <span class="orb-icon"><svg><use href="/assets/icons/icons.svg#git"></use></svg></span>
+                </span>
+
+                <span class="orb-item">
+                  <span class="orb-icon"><svg><use href="/assets/icons/icons.svg#github"></use></svg></span>
+                </span>
+
+                <span class="orb-item">
+                  <span class="orb-icon"><svg><use href="/assets/icons/icons.svg#linux"></use></svg></span>
+                </span>
+
+                <span class="orb-item">
+                  <span class="orb-icon"><svg><use href="/assets/icons/icons.svg#vscode"></use></svg></span>
+                </span>
+
+                <span class="orb-item">
+                  <span class="orb-icon"><svg><use href="/assets/icons/icons.svg#excel"></use></svg></span>
+                </span>
+              </div>
+
+              <div class="orb-core"></div>
+            </div>
+
+            <p class="text-sm text-gray-500 text-center lg:text-left max-w-md">
+              A rotating snapshot of the technologies I use most often.
+            </p>
+          </div>
+
+          <div class="reveal space-y-4 max-w-xl lg:pl-8" style="--d: 320ms">
+            <p class="text-gray-300 text-lg md:text-xl leading-relaxed">
+              I like building systems that feel <span class="text-white font-semibold">solid</span> and
+              interfaces that feel <span class="text-white font-semibold">effortless</span>.
+            </p>
+            <p class="text-gray-400">
+              These cards show how I group my skills in real projects — by product area and outcomes.
+            </p>
+          </div>
+        </div>
+
+        <!-- GRID DE CARDS  -->
+        <div class="skills-grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 auto-rows-fr">
+
+          <!-- FRONTEND -->
+          <article class="group relative h-full min-h-[260px] rounded-2xl border border-gray-800 bg-gray-900/25 p-8 md:p-9
+                          shadow-[0_0_0_1px_rgba(255,255,255,0.02)]
+                          transition-transform duration-200 ease-out hover:-translate-y-1">
+            <div class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 blur-2xl
+                        bg-purple-500/10 transition-opacity duration-200 group-hover:opacity-100"></div>
+            <div class="pointer-events-none absolute inset-0 rounded-2xl opacity-0
+                        ring-1 ring-purple-500/30 transition-opacity duration-200 group-hover:opacity-100"></div>
+
+            <header class="relative flex items-center gap-4">
+              <div class="h-12 w-12 rounded-xl bg-purple-500/10 border border-purple-500/25 flex items-center justify-center">
+              <svg class="header-skill-ico"><use href="/assets/icons/icons.svg#code"></use></svg>
+              </div>
+              <h3 class="text-2xl font-semibold text-gray-100" data-i18n="skills_card_frontend">Frontend Development</h3>
+            </header>
+
+            <ul class="relative mt-6 flex flex-wrap gap-3">
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#react"></use></svg><span>React</span></li>
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#nextjs"></use></svg><span>Next.js</span></li>
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#typescript"></use></svg><span>TypeScript</span></li>
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#tailwind"></use></svg><span>Tailwind CSS</span></li>
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#html5"></use></svg><span>HTML5</span></li>
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#css3"></use></svg><span>CSS3</span></li>
+            </ul>
+          </article>
+
+          <!-- BACKEND -->
+          <article class="group relative h-full min-h-[260px] rounded-2xl border border-gray-800 bg-gray-900/25 p-8 md:p-9
+                          shadow-[0_0_0_1px_rgba(255,255,255,0.02)]
+                          transition-transform duration-200 ease-out hover:-translate-y-1">
+            <div class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 blur-2xl
+                        bg-purple-500/10 transition-opacity duration-200 group-hover:opacity-100"></div>
+            <div class="pointer-events-none absolute inset-0 rounded-2xl opacity-0
+                        ring-1 ring-purple-500/30 transition-opacity duration-200 group-hover:opacity-100"></div>
+
+            <header class="relative flex items-center gap-4">
+              <div class="h-12 w-12 rounded-xl bg-purple-500/10 border border-purple-500/25 flex items-center justify-center">
+              <svg class="header-skill-ico"><use href="/assets/icons/icons.svg#backend"></use></svg>
+              </div>
+              <h3 class="text-2xl font-semibold text-gray-100" data-i18n="skills_card_backend">Backend Development</h3>
+            </header>
+
+            <ul class="relative mt-6 flex flex-wrap gap-3">
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#nodejs"></use></svg><span>Node.js</span></li>
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#python"></use></svg><span>Python</span></li>
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#postgresql"></use></svg><span>PostgreSQL</span></li>
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#fastapi"></use></svg><span>FastAPI</span></li>
+              <li class="skill-pill"><span data-i18n="skills_pill_rest">REST APIs</span></li>
+            </ul>
+          </article>
+
+          <!-- UI/UX -->
+          <article class="group relative h-full min-h-[260px] rounded-2xl border border-gray-800 bg-gray-900/25 p-8 md:p-9
+                          shadow-[0_0_0_1px_rgba(255,255,255,0.02)]
+                          transition-transform duration-200 ease-out hover:-translate-y-1">
+            <div class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 blur-2xl
+                        bg-purple-500/10 transition-opacity duration-200 group-hover:opacity-100"></div>
+            <div class="pointer-events-none absolute inset-0 rounded-2xl opacity-0
+                        ring-1 ring-purple-500/30 transition-opacity duration-200 group-hover:opacity-100"></div>
+
+            <header class="relative flex items-center gap-4">
+              <div class="h-12 w-12 rounded-xl bg-purple-500/10 border border-purple-500/25 flex items-center justify-center">
+              <svg class="header-skill-ico"><use href="/assets/icons/icons.svg#creative"></use></svg>
+              </div>
+              <h3 class="text-2xl font-semibold text-gray-100" data-i18n="skills_card_uiux">UI/UX Design</h3>
+            </header>
+
+            <ul class="relative mt-6 flex flex-wrap gap-3">
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#photoshop"></use></svg><span>Adobe Photoshop</span></li>
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#figma"></use></svg><span>Figma</span></li>
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#premiere"></use></svg><span>Adobe Premiere Pro</span></li>
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#canva"></use></svg><span>Canva</span></li>
+              <li class="skill-pill"><span data-i18n="skills_pill_prototyping">Prototyping</span></li>
+            </ul>
+          </article>
+
+          <!-- CLOUD -->
+          <article class="group relative h-full min-h-[260px] rounded-2xl border border-gray-800 bg-gray-900/25 p-8 md:p-9
+                          shadow-[0_0_0_1px_rgba(255,255,255,0.02)]
+                          transition-transform duration-200 ease-out hover:-translate-y-1">
+            <div class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 blur-2xl
+                        bg-purple-500/10 transition-opacity duration-200 group-hover:opacity-100"></div>
+            <div class="pointer-events-none absolute inset-0 rounded-2xl opacity-0
+                        ring-1 ring-purple-500/30 transition-opacity duration-200 group-hover:opacity-100"></div>
+
+            <header class="relative flex items-center gap-4">
+              <div class="h-12 w-12 rounded-xl bg-purple-500/10 border border-purple-500/25 flex items-center justify-center">
+              <svg class="header-skill-ico"><use href="/assets/icons/icons.svg#cloud"></use></svg>
+              </div>
+              <h3 class="text-2xl font-semibold text-gray-100" data-i18n="skills_card_cloud">Cloud & DevOps</h3>
+            </header>
+
+            <ul class="relative mt-6 flex flex-wrap gap-3">
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#aws"></use></svg><span>AWS</span></li>
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#docker"></use></svg><span>Docker</span></li>
+              <li class="skill-pill"><span data-i18n="skills_pill_cicd">CI/CD</span></li>
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#github"></use></svg><span>GitHub</span></li>
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#git"></use></svg><span>Git</span></li>
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#linux"></use></svg><span>Linux</span></li>
+            </ul>
+          </article>
+
+          <!-- TOOLS -->
+          <article class="group relative h-full min-h-[260px] rounded-2xl border border-gray-800 bg-gray-900/25 p-8 md:p-9
+                          shadow-[0_0_0_1px_rgba(255,255,255,0.02)]
+                          transition-transform duration-200 ease-out hover:-translate-y-1">
+            <div class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 blur-2xl
+                        bg-purple-500/10 transition-opacity duration-200 group-hover:opacity-100"></div>
+            <div class="pointer-events-none absolute inset-0 rounded-2xl opacity-0
+                        ring-1 ring-purple-500/30 transition-opacity duration-200 group-hover:opacity-100"></div>
+
+            <header class="relative flex items-center gap-4">
+              <div class="h-12 w-12 rounded-xl bg-purple-500/10 border border-purple-500/25 flex items-center justify-center">
+              <svg class="header-skill-ico"><use href="/assets/icons/icons.svg#tools"></use></svg>
+              </div>
+              <h3 class="text-2xl font-semibold text-gray-100" data-i18n="skills_card_tools">Tools & Technologies</h3>
+            </header>
+
+            <ul class="relative mt-6 flex flex-wrap gap-3">
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#vscode"></use></svg><span>Vs Code</span></li>
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#excel"></use></svg><span>Excel</span></li>
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#pandas"></use></svg><span>Pandas</span></li>              
+              <li class="skill-pill"><svg class="skill-ico"><use href="/assets/icons/icons.svg#autohotkey"></use></svg><span>AutoHotkey</span></li>              
+            </ul>
+          </article>
+
+          <!-- CREATIVE -->
+          <article class="group relative h-full min-h-[260px] rounded-2xl border border-gray-800 bg-gray-900/25 p-8 md:p-9
+                          shadow-[0_0_0_1px_rgba(255,255,255,0.02)]
+                          transition-transform duration-200 ease-out hover:-translate-y-1">
+            <div class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 blur-2xl
+                        bg-purple-500/10 transition-opacity duration-200 group-hover:opacity-100"></div>
+            <div class="pointer-events-none absolute inset-0 rounded-2xl opacity-0
+                        ring-1 ring-purple-500/30 transition-opacity duration-200 group-hover:opacity-100"></div>
+
+            <header class="relative flex items-center gap-4">
+              <div class="h-12 w-12 rounded-xl bg-purple-500/10 border border-purple-500/25 flex items-center justify-center">
+              <svg class="header-skill-ico"><use href="/assets/icons/icons.svg#star"></use></svg>
+              </div>
+              <h3 class="text-2xl font-semibold text-gray-100" data-i18n="skills_card_creative">Creative Skills</h3>
+            </header>
+
+            <ul class="relative mt-6 flex flex-wrap gap-3">
+              <li class="skill-pill"><span data-i18n="skills_pill_brand">Brand Design</span></li>
+              <li class="skill-pill"><span data-i18n="skills_pill_video">Video Editing</span></li>
+              <li class="skill-pill"><span data-i18n="skills_pill_logo">Logo Design</span></li>
+              <li class="skill-pill"><span data-i18n="skills_pill_charts">Charts and Presentations for Business</span></li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="experience" class="snap-start min-h-screen w-full  relative overflow-hidden">
+  <div class="min-h-screen flex items-center">
+    <div class="w-full">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-8">
+        <div class="space-y-16">
+
+          <!-- HEADER (hero/skills-like) -->
+          <header class="experience-header space-y-6 max-w-3xl mx-auto text-center">
+            <div class="reveal" style="--d: 0ms">
+              <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-800 bg-white/5 text-sm text-gray-200">
+                <span class="inline-block w-2 h-2 rounded-full bg-purple-400"></span>
+                <span class="badge-text" data-i18n="exp_badge">Experiência</span>
+              </span>
+            </div>
+
+            <div class="space-y-3">
+            <h2 class="reveal text-4xl md:text-5xl font-extrabold leading-[1.05] tracking-tight" style="--d: 90ms">
+              <span data-i18n="exp_title_prefix">3+ anos construindo</span>
+              <span class="text-purple-400" data-i18n="exp_title_highlight">produtos web</span>
+            </h2>
+
+              <p class="reveal text-gray-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed" style="--d: 180ms"
+                data-i18n="exp_subtitle">
+                Minha jornada unindo design e desenvolvimento — entregando interfaces modernas, layouts otimizados e componentes escaláveis em projetos reais.
+              </p>
+            </div>
+          </header>
+
+          <!-- TIMELINE -->
+          <div class="experience-timeline relative">
+
+            <!-- linha vertical -->
+            <div class="experience-line" aria-hidden="true"></div>
+
+            <div class="space-y-10">
+
+              <!-- ITEM 1 -->
+              <article class="group relative experience-item reveal" style="--d: 260ms">
+                <!-- node -->
+                <div class="experience-node" aria-hidden="true">
+                  <div class="experience-dot"></div>
+                  <div class="experience-dot-glow"></div>
+                </div>
+
+                <!-- card -->
+                <div class="experience-card">
+                  <!-- glow roxo -->
+                  <div class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 blur-2xl
+                              bg-purple-500/10 transition-opacity duration-200 group-hover:opacity-100"></div>
+                  <!-- ring roxo -->
+                  <div class="pointer-events-none absolute inset-0 rounded-2xl opacity-0
+                              ring-1 ring-purple-500/30 transition-opacity duration-200 group-hover:opacity-100"></div>
+
+                  <div class="relative flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                    <div class="space-y-2">
+                      <h3 class="text-xl md:text-2xl font-semibold text-gray-100" data-i18n="exp_role1">
+                        Cargo 1
+                      </h3>
+
+                      <div class="flex items-center gap-2 text-gray-400">
+                        <svg class="h-4 w-4 opacity-80" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M14,8h1a1,1,0,0,0,0-2H14a1,1,0,0,0,0,2Zm0,4h1a1,1,0,0,0,0-2H14a1,1,0,0,0,0,2ZM9,8h1a1,1,0,0,0,0-2H9A1,1,0,0,0,9,8Zm0,4h1a1,1,0,0,0,0-2H9a1,1,0,0,0,0,2Zm12,8H20V3a1,1,0,0,0-1-1H5A1,1,0,0,0,4,3V20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Zm-8,0H11V16h2Zm5,0H15V15a1,1,0,0,0-1-1H10a1,1,0,0,0-1,1v5H6V4H18Z"/>                        
+                      </svg>
+                        <span class="text-sm" data-i18n="exp_role1_org">Empresa Cargo 1</span>
+                      </div>
+                    </div>
+
+                    <span class="relative inline-flex items-center rounded-full border border-gray-800 bg-gray-950/30 px-4 py-1.5 text-sm text-gray-300" data-i18n="exp_role1_date">
+                      2024 — Present
+                    </span>
+                  </div>
+
+                  <p class="relative mt-4 text-gray-400 max-w-3xl leading-relaxed" data-i18n="exp_p1">
+                    Descrição Cargo 1
+                  </p>
+
+                  <ul class="relative mt-6 space-y-3 text-sm text-gray-300">
+                    <li class="flex items-start gap-3">
+                      <span class="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-purple-500/10 border border-purple-500/20">
+                        <svg class="h-4 w-4 text-purple-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                          <path d="M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5z"/>
+                        </svg>
+                      </span>
+                      <span data-i18n="exp_b1">Descrição cargo 1</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <span class="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-purple-500/10 border border-purple-500/20">
+                        <svg class="h-4 w-4 text-purple-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                          <path d="M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5z"/>
+                        </svg>
+                      </span>
+                      <span data-i18n="exp_b2">Descrição cargo 1</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <span class="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-purple-500/10 border border-purple-500/20">
+                        <svg class="h-4 w-4 text-purple-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                          <path d="M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5z"/>
+                        </svg>
+                      </span>
+                      <span data-i18n="exp_b3">Descrição cargo 1</span>
+                    </li>
+                  </ul>
+                </div>
+              </article>
+
+              <!-- ITEM 2 -->
+              <article class="group relative experience-item reveal" style="--d: 320ms">
+                <div class="experience-node" aria-hidden="true">
+                  <div class="experience-dot"></div>
+                  <div class="experience-dot-glow"></div>
+                </div>
+
+                <div class="experience-card">
+                  <div class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 blur-2xl
+                              bg-purple-500/10 transition-opacity duration-200 group-hover:opacity-100"></div>
+                  <div class="pointer-events-none absolute inset-0 rounded-2xl opacity-0
+                              ring-1 ring-purple-500/30 transition-opacity duration-200 group-hover:opacity-100"></div>
+
+                  <div class="relative flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                    <div class="space-y-2">
+                      <h3 class="text-xl md:text-2xl font-semibold text-gray-100" data-i18n="exp_role2">
+                        Cargo 2
+                      </h3>
+
+                      <div class="flex items-center gap-2 text-gray-400">
+                        <svg class="h-4 w-4 opacity-80" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M14,8h1a1,1,0,0,0,0-2H14a1,1,0,0,0,0,2Zm0,4h1a1,1,0,0,0,0-2H14a1,1,0,0,0,0,2ZM9,8h1a1,1,0,0,0,0-2H9A1,1,0,0,0,9,8Zm0,4h1a1,1,0,0,0,0-2H9a1,1,0,0,0,0,2Zm12,8H20V3a1,1,0,0,0-1-1H5A1,1,0,0,0,4,3V20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Zm-8,0H11V16h2Zm5,0H15V15a1,1,0,0,0-1-1H10a1,1,0,0,0-1,1v5H6V4H18Z"/>                        
+                        </svg>
+                        <span class="text-sm" data-i18n="exp_role2_org">Empresa Cargo 2</span>
+                      </div>
+                    </div>
+
+                    <span class="relative inline-flex items-center rounded-full border border-gray-800 bg-gray-950/30 px-4 py-1.5 text-sm text-gray-300" data-i18n="exp_role2_date">
+                      2022 — 2024
+                    </span>
+                  </div>
+
+                  <p class="relative mt-4 text-gray-400 max-w-3xl leading-relaxed" data-i18n="exp_p2">
+                    Descrição do Segundo Cargo
+                  </p>
+
+                  <ul class="relative mt-6 space-y-3 text-sm text-gray-300">
+                    <li class="flex items-start gap-3">
+                      <span class="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-purple-500/10 border border-purple-500/20">
+                        <svg class="h-4 w-4 text-purple-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                          <path d="M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5z"/>
+                        </svg>
+                      </span>
+                      <span data-i18n="exp_c1">Descrição cargo 2</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <span class="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-purple-500/10 border border-purple-500/20">
+                        <svg class="h-4 w-4 text-purple-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                          <path d="M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5z"/>
+                        </svg>
+                      </span>
+                      <span data-i18n="exp_c2">Descrição cargo 2</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <span class="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-purple-500/10 border border-purple-500/20">
+                        <svg class="h-4 w-4 text-purple-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                          <path d="M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5z"/>
+                        </svg>
+                      </span>
+                      <span data-i18n="exp_c3">Descrição cargo 2.</span>
+                    </li>
+                  </ul>
+                </div>
+              </article>
+
+              <!-- ITEM 3 -->
+              <article class="group relative experience-item reveal" style="--d: 380ms">
+                <div class="experience-node" aria-hidden="true">
+                  <div class="experience-dot"></div>
+                  <div class="experience-dot-glow"></div>
+                </div>
+
+                <div class="experience-card">
+                  <div class="pointer-events-none absolute inset-0 rounded-2xl opacity-0 blur-2xl
+                              bg-purple-500/10 transition-opacity duration-200 group-hover:opacity-100"></div>
+                  <div class="pointer-events-none absolute inset-0 rounded-2xl opacity-0
+                              ring-1 ring-purple-500/30 transition-opacity duration-200 group-hover:opacity-100"></div>
+
+                  <div class="relative flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                    <div class="space-y-2">
+                      <h3 class="text-xl md:text-2xl font-semibold text-gray-100" data-i18n="exp_role3">
+                        Terceiro Cargo
+                      </h3>
+
+                      <div class="flex items-center gap-2 text-gray-400">
+                        <svg class="h-4 w-4 opacity-80" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M14,8h1a1,1,0,0,0,0-2H14a1,1,0,0,0,0,2Zm0,4h1a1,1,0,0,0,0-2H14a1,1,0,0,0,0,2ZM9,8h1a1,1,0,0,0,0-2H9A1,1,0,0,0,9,8Zm0,4h1a1,1,0,0,0,0-2H9a1,1,0,0,0,0,2Zm12,8H20V3a1,1,0,0,0-1-1H5A1,1,0,0,0,4,3V20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Zm-8,0H11V16h2Zm5,0H15V15a1,1,0,0,0-1-1H10a1,1,0,0,0-1,1v5H6V4H18Z"/>                        
+                        </svg>
+                        <span class="text-sm" data-i18n="exp_role3_org">Descrição Terceiro Cargo</span>
+                      </div>
+                    </div>
+
+                    <span class="relative inline-flex items-center rounded-full border border-gray-800 bg-gray-950/30 px-4 py-1.5 text-sm text-gray-300" data-i18n="exp_role3_date">
+                      Previous years
+                    </span>
+                  </div>
+
+                  <p class="relative mt-4 text-gray-400 max-w-3xl leading-relaxed" data-i18n="exp_p3">
+                    Descrição do terceiro cargo
+                  </p>
+
+                  <ul class="relative mt-6 space-y-3 text-sm text-gray-300">
+                    <li class="flex items-start gap-3">
+                      <span class="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-purple-500/10 border border-purple-500/20">
+                        <svg class="h-4 w-4 text-purple-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                          <path d="M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5z"/>
+                        </svg>
+                      </span>
+                      <span data-i18n="exp_d1">Descrição cargo 3.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <span class="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-purple-500/10 border border-purple-500/20">
+                        <svg class="h-4 w-4 text-purple-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                          <path d="M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5z"/>
+                        </svg>
+                      </span>
+                      <span data-i18n="exp_d2">Descrição cargo 3.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <span class="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-purple-500/10 border border-purple-500/20">
+                        <svg class="h-4 w-4 text-purple-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                          <path d="M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5z"/>
+                        </svg>
+                      </span>
+                      <span data-i18n="exp_d3">Descrição cargo 3.</span>
+                    </li>
+                  </ul>
+                </div>
+              </article>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="design-projects" class="snap-start h-screen w-full border-t border-gray-800 overflow-x-hidden"
+    >
+      <div class="h-full flex flex-col">
+        <!-- TAG/CHIP  -->
+        <header class="max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-24 pt-24">
+          <div
+            class="section-chip"
+            data-reveal
+            style="--d: 0ms"
+            aria-label="Design Projects"
+          >
+            <span class="section-dot"></span>
+            <span data-i18n="chip_design">Design Projects</span>
+          </div>
+        </header>
+
+        <!-- VIEWPORT -->
+        <div class="flex-1 min-h-0 w-full flex items-center">
+          <div class="w-full overflow-hidden flex justify-center">
+            <div
+              id="design-viewport"
+              class="w-full overflow-hidden relative"
+              data-reveal
+              style="--d: 90ms"
+            >
+              <!-- TRACK -->
+              <div id="design-carousel" class="flex gap-24 will-change-transform w-max">
+                <!-- SLIDE 1 -->
+                <article class="carousel-slide min-w-[80vw] lg:min-w-[65vw] flex flex-col items-center">
+                  <!-- PREVIEW  -->
+                  <div class="project-preview">
+                    <img
+                      src="/assets/images/slide_mb.jpg"
+                      alt="Moura Burger - Hamburgueria"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  <!-- TEXTO  -->
+                  <div class="project-meta">
+                    <h3 class="project-title" data-i18n="proj_design_title_1">Project Title</h3>
+
+                    <p class="project-desc" data-i18n="proj_design_desc_1">
+                      Project Description.
+                    </p>
+
+                    <!-- STACKS  -->
+                    <div class="project-stacks" aria-label="Stacks">
+                      <span class="stack-pill" data-i18n="stack_pill_1_1">Stack Pill 1</span>
+                      <span class="stack-pill" data-i18n="stack_pill_1_2">Stack Pill 2</span>
+                      <span class="stack-pill" data-i18n="stack_pill_1_3">Stack Pill 3</span>
+                    </div>
+
+                    <!-- LINKS -->
+                    <div class="project-links">
+                      <a href="#" class="primary-link" data-i18n="btn_behance">Behance</a>
+                      <a href="#" class="secondary-link" data-i18n="btn_case">Case</a>
+                    </div>
+                  </div>
+                </article>
+
+                <!-- SLIDE 2 -->
+                <article class="carousel-slide min-w-[80vw] lg:min-w-[65vw] flex flex-col items-center">
+                  <!-- PREVIEW  -->
+                  <div class="project-preview">
+                    <img
+                      src="/assets/images/slide_ra.jpg"
+                      alt="Raquel Alves - Engenheira Civil"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  <!-- TEXTO  -->
+                  <div class="project-meta">
+                    <h3 class="project-title" data-i18n="proj_design_title_2">Project Title</h3>
+
+                    <p class="project-desc" data-i18n="proj_design_desc_2">
+                      Project Description
+                    </p>
+
+                    <!-- STACKS  -->
+                    <div class="project-stacks" aria-label="Stacks">
+                      <span class="stack-pill" data-i18n="stack_pill_2_1">Stack Pill 1</span>
+                      <span class="stack-pill" data-i18n="stack_pill_2_2">Stack Pill 2</span>
+                      <span class="stack-pill" data-i18n="stack_pill_2_3">Stack Pill 3</span>
+                    </div>
+
+                    <!-- LINKS -->
+                    <div class="project-links">
+                      <a href="#" class="primary-link" data-i18n="btn_behance">Behance</a>
+                      <a href="#" class="secondary-link" data-i18n="btn_case">Case</a>
+                    </div>
+                  </div>
+                </article>
+
+                <!-- SLIDE 3 -->
+                <article class="carousel-slide min-w-[80vw] lg:min-w-[65vw] flex flex-col items-center">
+                  <!-- PREVIEW  -->
+                  <div class="project-preview">
+                    <img
+                      src="/assets/images/slide_ma.jpg"
+                      alt="Chocolate - Doces"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  <!-- TEXTO  -->
+                  <div class="project-meta">
+                    <h3 class="project-title" data-i18n="proj_design_title_3">Project Title</h3>
+
+                    <p class="project-desc" data-i18n="proj_design_desc_3">
+                      Project Description
+                    </p>
+
+                    <!-- STACKS  -->
+                    <div class="project-stacks" aria-label="Stacks">
+                      <span class="stack-pill" data-i18n="stack_pill_3_1">Stack Pill 1</span>
+                      <span class="stack-pill" data-i18n="stack_pill_3_2">Stack Pill 1</span>
+                    </div>
+
+                    <!-- LINKS -->
+                    <div class="project-links">
+                      <a href="#" class="primary-link" data-i18n="btn_behance">Behance</a>
+                      <a href="#" class="secondary-link" data-i18n="btn_case">Case</a>
+                    </div>
+                  </div>
+                </article>
+
+                <!-- ( outros slides continuam iguais) -->
+              </div>
+
+              <!-- SETAS LATERAIS -->
+              <button
+                type="button"
+                class="carousel-nav left"
+                aria-label="Previous design slide"
+                onclick="moveDesignSlide(-1)"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" class="chev">
+                  <path
+                    d="M14.5 5.5 8.5 12l6 6.5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+
+              <button
+                type="button"
+                class="carousel-nav right"
+                aria-label="Next design slide"
+                onclick="moveDesignSlide(1)"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" class="chev">
+                  <path
+                    d="M9.5 5.5 15.5 12l-6 6.5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+<section id="dev-projects"
+      class="snap-start h-screen w-full border-t border-gray-800 overflow-x-hidden"
+    >
+      <div class="h-full flex flex-col">
+        <header class="max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-24 pt-24">
+          <div class="section-chip" data-reveal style="--d: 0ms" aria-label="Dev Projects">
+            <span class="section-dot"></span>
+            <span>Dev Projects</span>
+          </div>
+        </header>
+
+        <div class="flex-1 min-h-0 w-full flex items-center">
+          <div class="w-full overflow-hidden flex justify-center">
+            <div
+              id="dev-viewport"
+              class="w-full overflow-hidden relative"
+              data-reveal
+              style="--d: 90ms"
+            >
+              <div id="dev-carousel" class="flex gap-24 will-change-transform w-max">
+                <!-- SLIDE 1 -->
+                <article class="carousel-slide min-w-[80vw] lg:min-w-[65vw] flex flex-col items-center">
+                  <!-- PREVIEW  -->
+                  <div class="project-preview">
+                    <img
+                      src="/assets/images/slide_api.jpg"
+                      alt="Api Rest - FastAPI"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  <!-- TEXTO  -->
+                  <div class="project-meta">
+                    <h3 class="project-title" data-i18n="proj_dev_title_1">Project Title</h3>
+
+                    <p class="project-desc" data-i18n="proj_dev_desc_1">
+                      Project Description
+                    </p>
+
+                    <!-- STACKS  -->
+                    <div class="project-stacks" aria-label="Stacks">
+                      <span class="stack-pill" data-i18n="stack_pill_dev_1_1">Stack Pill 1</span>
+                      <span class="stack-pill" data-i18n="stack_pill_dev_1_2">Stack Pill 2</span>
+                      <span class="stack-pill" data-i18n="stack_pill_dev_1_3">Stack Pill 3</span>
+                      <span class="stack-pill" data-i18n="stack_pill_dev_1_4">Stack Pill 4</span>
+                    </div>
+
+                    <!-- LINKS -->
+                    <div class="project-links">
+                      <a href="#" class="primary-link" data-i18n="btn_repo">Repository</a>
+                      <a href="#" class="secondary-link" data-i18n="btn_live">Online</a>
+                    </div>
+                  </div>
+                </article>
+
+                <!-- SLIDE 2 -->
+                <article class="carousel-slide min-w-[80vw] lg:min-w-[65vw] flex flex-col items-center">
+                  <!-- PREVIEW -->
+                  <div class="project-preview">
+                    <img
+                      src="/assets/images/slide_teste.jpg"
+                      alt="Emmanuel Lemos Portfolio"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  <!-- TEXTO  -->
+                  <div class="project-meta">
+                    <h3 class="project-title" data-i18n="proj_dev_title_2">Project Title</h3>
+
+                    <p class="project-desc" data-i18n="proj_dev_desc_2">
+                      Project Description
+                    </p>
+
+                    <!-- STACKS  -->
+                    <div class="project-stacks" aria-label="Stacks">
+                      <span class="stack-pill" data-i18n="stack_pill_dev_2_1">Stack Pill 1</span>
+                      <span class="stack-pill" data-i18n="stack_pill_dev_2_2">Stack Pill 2</span>
+                      <span class="stack-pill" data-i18n="stack_pill_dev_2_3">Stack Pill 3</span>
+                      <span class="stack-pill" data-i18n="stack_pill_dev_2_4">Stack Pill 3</span>
+                    </div>
+
+                    <!-- LINKS -->
+                    <div class="project-links">
+                      <a href="#" class="primary-link" data-i18n="btn_repo">Repository</a>
+                      <a href="#" class="secondary-link" data-i18n="btn_live">Online</a>
+                    </div>
+                  </div>
+                </article>
+
+
+                <!-- (seus outros slides continuam) -->
+              </div>
+
+              <!-- SETAS LATERAIS -->
+              <button
+                type="button"
+                class="carousel-nav left"
+                aria-label="Previous dev slide"
+                onclick="moveDevSlide(-1)"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" class="chev">
+                  <path
+                    d="M14.5 5.5 8.5 12l6 6.5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+
+              <button
+                type="button"
+                class="carousel-nav right"
+                aria-label="Next dev slide"
+                onclick="moveDevSlide(1)"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" class="chev">
+                  <path
+                    d="M9.5 5.5 15.5 12l-6 6.5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+<section id="contact" class="snap-start min-h-screen w-full flex">
+  <div class="w-full">
+    <div class="max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-24 py-12 md:py-14">
+
+      <div class="flex flex-col items-center">
+
+        <!-- “Window”  -->
+        <div
+          class="contact-window relative w-full max-w-5xl rounded-3xl border border-gray-800/80
+                 bg-gray-950/30 backdrop-blur-xl
+                 shadow-[0_30px_120px_rgba(0,0,0,0.65)]
+                 overflow-hidden"
+        >
+          <!-- Glow roxo atrás -->
+          <div class="pointer-events-none absolute -inset-10 bg-purple-500/10 blur-3xl opacity-25"></div>
+
+          <!-- Top bar -->
+          <div
+            class="relative flex items-center justify-between px-6 py-4
+                   border-b border-gray-800/70
+                   bg-gradient-to-r from-gray-950/40 to-gray-950/10"
+          >
+            <div class="flex items-center gap-2">
+              <span class="h-3 w-3 rounded-full bg-rose-400/80"></span>
+              <span class="h-3 w-3 rounded-full bg-yellow-300/80"></span>
+              <span class="h-3 w-3 rounded-full bg-emerald-400/80"></span>
+            </div>
+
+            <div class="text-gray-400 text-sm tracking-wide select-none">
+              contact.app
+            </div>
+
+            <div class="text-gray-500 text-xl leading-none select-none">+</div>
+          </div>
+
+          <!-- Content -->
+          <div class="relative p-6 md:p-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+
+              <!-- Left -->
+              <div class="contact-left flex flex-col min-h-[520px] lg:min-h-[560px]">
+                <div class="space-y-4">
+                  <h2 class="text-3xl md:text-4xl font-semibold text-gray-100">
+                    Let’s talk
+                  </h2>
+
+                  <p class="text-gray-400 leading-relaxed max-w-lg">
+                    Whether you’re looking to build a new website, improve your existing platform,
+                    or bring a unique project to life, I’m available and here to help.
+                  </p>
+                </div>
+
+                <!-- Contact quick info (left bottom) -->
+            <div class="contact-info-wrap flex-1 flex items-center justify-center">
+                <div class="contact-info reveal mt-auto" data-reveal style="--d: 220ms" aria-label="Contact info">
+                  <div class="contact-info-item">
+                    <span class="contact-info-ic" aria-hidden="true">
+                      <!-- mail icon -->
+                      <svg class="w-5 h-5"><use href="/assets/icons/icons.svg#mail"></use></svg>
+                    </span>
+
+                    <div class="contact-info-txt">
+                      <p class="contact-info-label" data-i18n="contact_email_label">Email</p>
+                      <a id="contactEmail" class="contact-info-value" href="mailto:email@provedor.com">emai@provedor.com</a>
+                    </div>
+                  </div>
+
+                  <div class="contact-info-item">
+                    <span class="contact-info-ic" aria-hidden="true">
+                      <!-- pin icon -->
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                           class="w-5 h-5">
+                        <path d="M12 21s7-4.4 7-11a7 7 0 1 0-14 0c0 6.6 7 11 7 11Z"></path>
+                        <path d="M12 10.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"></path>
+                      </svg>
+                    </span>
+
+                    <div class="contact-info-txt">
+                      <p class="contact-info-label" data-i18n="contact_location_label">Location</p>
+                      <p id="contactLocation" class="contact-info-value" data-i18n="contact_location_value">São Paulo, Brazil</p>
+                    </div>
+                  </div>
+
+                  <div class="contact-info-item">
+                    <span class="contact-info-ic" aria-hidden="true">
+                      <!-- clock icon -->
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                           class="w-5 h-5">
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <path d="M12 7v6l4 2"></path>
+                      </svg>
+                    </span>
+
+                    <div class="contact-info-txt">
+                      <p class="contact-info-label" data-i18n="contact_response_label">Response time</p>
+                      <p id="contactResponse" class="contact-info-value" data-i18n="contact_response_value">24h</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+              </div>
+
+              <!-- Form -->
+              <form id="contactForm" class="space-y-6">
+                  <input
+                    type="text"
+                    name="website"
+                    tabindex="-1"
+                    autocomplete="off"
+                    class="hidden"
+                  />
+                <div class="space-y-2">
+                  <label class="text-sm text-gray-300" for="cf_name">Full Name:</label>
+                  <input
+                    id="cf_name"
+                    name="name"
+                    type="text"
+                    required
+                    autocomplete="name"
+                    placeholder="Your Full Name"
+                    class="w-full rounded-lg bg-gray-900/40 border border-gray-800
+                           px-4 py-3 text-gray-100 placeholder:text-gray-500
+                           focus:outline-none focus:border-purple-500/70
+                           focus:ring-2 focus:ring-purple-500/20 transition"
+                  />
+                </div>
+
+                <div class="space-y-2">
+                  <label class="text-sm text-gray-300" for="cf_email">Email:</label>
+                  <input
+                    id="cf_email"
+                    name="email"
+                    type="email"
+                    required
+                    autocomplete="email"
+                    placeholder="Your Email"
+                    class="w-full rounded-lg bg-gray-900/40 border border-gray-800
+                           px-4 py-3 text-gray-100 placeholder:text-gray-500
+                           focus:outline-none focus:border-purple-500/70
+                           focus:ring-2 focus:ring-purple-500/20 transition"
+                  />
+                </div>
+
+                <div class="space-y-2">
+                  <label class="text-sm text-gray-300" for="cf_msg">Message:</label>
+                  <textarea
+                    id="cf_msg"
+                    name="message"
+                    rows="5"
+                    required
+                    placeholder="Your Message"
+                    class="w-full rounded-lg bg-gray-900/40 border border-gray-800
+                           px-4 py-3 text-gray-100 placeholder:text-gray-500
+                           focus:outline-none focus:border-purple-500/70
+                           focus:ring-2 focus:ring-purple-500/20 transition
+                           resize-none"
+                  ></textarea>
+                </div>
+
+                <button
+                  id="contactSubmit"
+                  type="submit"
+                  class="w-full rounded-lg bg-purple-600 hover:bg-purple-700
+                         transition font-medium py-3
+                         shadow-[0_10px_30px_rgba(168,85,247,0.18)]
+                         hover:shadow-[0_14px_44px_rgba(168,85,247,0.28)]
+                         hover:-translate-y-0.5 send_contact"
+                >
+                  Send Message
+                </button>
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Botões (no lugar do “Link to my Resume”) -->
+        <div class="contact-footer mt-8 flex flex-col items-center gap-4">
+          <p class="text-gray-200 contact-findme-title text-xl md:text-2xl font-semibold">
+            Find me on
+          </p>
+
+          <div class="contact-findme-icons flex gap-6">
+            <!-- GitHub -->
+            <a id="linkGithub"
+              href="https://github.com/emmanuel-lemos"
+              target="_blank"
+              aria-label="GitHub"
+              class="text-white hover:text-purple-500 transition transform hover:-translate-y-1"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7 md:w-8 md:h-8">
+                <path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.1 3.29 9.43 7.86 10.96.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.38-3.87-1.38-.52-1.33-1.27-1.68-1.27-1.68-1.04-.72.08-.71.08-.71 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.67 1.25 3.32.95.1-.74.4-1.25.73-1.54-2.56-.29-5.26-1.28-5.26-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.18a10.9 10.9 0 0 1 5.72 0c2.18-1.49 3.14-1.18 3.14-1.18.62 1.57.23 2.73.11 3.02.73.81 1.18 1.84 1.18 3.1 0 4.42-2.7 5.39-5.28 5.67.41.36.78 1.08.78 2.18v3.23c0 .31.21.68.8.56a11.52 11.52 0 0 0 7.86-10.96C23.5 5.74 18.27.5 12 .5z"/>
+              </svg>
+            </a>
+
+            <!-- LinkedIn -->
+            <a id="linkLinkedin"
+              href="https://www.linkedin.com/in/emmanuel-lemos-1a2400125/"
+              target="_blank"
+              aria-label="LinkedIn"
+              class="text-white hover:text-purple-500 transition transform hover:-translate-y-1"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7 md:w-8 md:h-8">
+                <path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM3 8.98h4v12H3zM9.5 8.98h3.8v1.64h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1v6.3h-4v-5.6c0-1.33-.02-3.05-1.86-3.05-1.87 0-2.16 1.46-2.16 2.95v5.7h-4z"/>
+              </svg>
+            </a>
+
+            <!-- Instagram -->
+            <a id="linkInstagram"
+              href="#"
+              aria-label="Instagram"
+              class="text-white hover:text-purple-500 transition transform hover:-translate-y-1"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7 md:w-8 md:h-8">
+                <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.65 0 3 1.35 3 3v10c0 1.65-1.35 3-3 3H7c-1.65 0-3-1.35-3-3V7c0-1.65 1.35-3 3-3h10zm-5 3.5A4.5 4.5 0 1 0 16.5 12 4.51 4.51 0 0 0 12 7.5zm0 7.4A2.9 2.9 0 1 1 14.9 12 2.9 2.9 0 0 1 12 14.9zM17.8 6.2a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2z"/>
+              </svg>
+            </a>
+
+            <!-- WhatsApp -->
+            <a id="linkWhatsapp" 
+              href="#"
+              aria-label="WhatsApp"
+              class="text-white hover:text-purple-500 transition transform hover:-translate-y-1"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="1.96 2 16.04 16" fill="currentColor" class="w-7 h-7 md:w-8 md:h-8">
+            <g>  <path d="M16.8 5.7C14.4 2 9.5.9 5.7 3.2 2 5.5.8 10.5 3.2 14.2l.2.3-.8 3 3-.8.3.2c1.3.7 2.7 1.1 4.1 1.1 1.5 0 3-.4 4.3-1.2 3.7-2.4 4.8-7.3 2.5-11.1zm-2.1 7.7c-.4.6-.9 1-1.6 1.1-.4 0-.9.2-2.9-.6-1.7-.8-3.1-2.1-4.1-3.6-.6-.7-.9-1.6-1-2.5 0-.8.3-1.5.8-2 .2-.2.4-.3.6-.3H7c.2 0 .4 0 .5.4.2.5.7 1.7.7 1.8.1.1.1.3 0 .4.1.2 0 .4-.1.5-.1.1-.2.3-.3.4-.2.1-.3.3-.2.5.4.6.9 1.2 1.4 1.7.6.5 1.2.9 1.9 1.2.2.1.4.1.5-.1s.6-.7.8-.9c.2-.2.3-.2.5-.1l1.6.8c.2.1.4.2.5.3.1.3.1.7-.1 1z"></path>  </g>              </svg>
+            </a>
+          </div>
+
+          <p class="text-gray-500 text-sm mt-4">
+            © 2026 Emmanuel Lemos. All rights reserved.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+  </main>
+
+<!-- I18N (local com fallback demo) -->
+<script src="/js/i18n.local.js" onerror="loadDemoI18N()"></script>
+<script>
+  function loadDemoI18N() {
+    const s = document.createElement("script");
+    s.src = "/js/i18n.demo.js";
+    s.onload = function () {
+      // Reaplica i18n depois do demo carregar
+      window.__APPLY_LANG__?.();
+    };
+    document.head.appendChild(s);
+  }
+</script>
+
+  <!-- CONFIG (local com fallback demo) -->
+  <script src="/js/config.local.js"></script>
+  <script>
+    if (!window.__PORTFOLIO__) {
+      const s = document.createElement("script");
+      s.src = "/js/config.demo.js";
+      document.head.appendChild(s);
+    }
+  </script>
+
+  <!-- Vite entry (carrega main.css + seu src/js/main.js) -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

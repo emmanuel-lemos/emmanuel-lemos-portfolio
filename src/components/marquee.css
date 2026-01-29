@@ -1,0 +1,72 @@
+/* =========================
+   Icons marquee (infinito)
+   ========================= */
+.icons-marquee{
+  --marquee-speed: 14s;
+  --icon-h: 54px;
+  --tile-w: 84px;
+  --gap: 28px;
+  --marquee-shift: 600px; /* sobrescrito via JS */
+  position: relative;
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  overflow: hidden;
+  padding: 0;
+}
+
+
+
+
+.icons-track{
+  display: flex;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+  animation: iconsMarquee var(--marquee-speed) linear infinite;
+}
+
+.icons-set{
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  padding-right: var(--gap);
+}
+
+.icons-track .icon{
+  height: var(--icon-h);
+  width: auto;
+  max-width: var(--tile-w);
+  object-fit: contain;
+  display: block;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+  opacity: .95;
+  filter: drop-shadow(0 6px 16px rgba(0,0,0,.35));
+}
+
+/* svg nunca anima */
+.icon_set_item svg{
+  width:50px;
+  height:50px;
+  opacity:.95;
+  fill: currentColor;
+
+
+  animation: none !important;
+}
+
+@keyframes iconsMarquee{
+  from { transform: translate3d(0,0,0); }
+  to   { transform: translate3d(calc(-1 * var(--marquee-shift)), 0, 0); }
+}
+
+.icons-marquee:hover .icons-track{ animation-play-state: paused; }
+
+
+

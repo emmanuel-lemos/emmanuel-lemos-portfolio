@@ -1,0 +1,62 @@
+/* =========================
+   TOKENS (Design System)
+   - 1 lugar só pra cores/valores
+   - usado por base.css + components
+   ========================= */
+
+/* DARK (default) */
+:root{
+  /* cores base (RGB sem vírgula) */
+  --bg: 0 0 0;
+  --fg: 255 255 255;
+
+  /* superfícies / cards */
+  --panel: 17 24 39;          /* gray-900 */
+  --panel-soft: 3 7 18;       /* gray-950 */
+  --border: 255 255 255;
+
+  /* texto */
+  --muted: 255 255 255;
+
+  /* brand */
+  --accent: 168 85 247;       /* purple-500 */
+  --accent-2: 124 58 237;     /* purple-600 */
+  --accent-3: 236 72 153;     /* pink-500 */
+
+  /* sombras */
+  --shadow: 0 0 0;
+}
+
+/* LIGHT (quando html NÃO tiver .dark) */
+html:not(.dark){
+  --bg: 255 255 255;
+  --fg: 11 11 15;             /* #0b0b0f */
+
+  --panel: 255 255 255;
+  --panel-soft: 2 6 23;       /* slate-950 vibe */
+  --border: 17 24 39;
+
+  --muted: 2 6 23;
+
+  /* mantém o roxo */
+  --accent: 168 85 247;
+  --accent-2: 124 58 237;
+  --accent-3: 236 72 153;
+}
+
+/* =========================
+   Helpers (opcional)
+   ========================= */
+
+/* “glass” padrão (dark) */
+:root{
+  --glass-bg: 255 255 255;
+  --glass-alpha: 0.04;
+  --glass-border-alpha: 0.08;
+}
+
+/* “glass” no light */
+html:not(.dark){
+  --glass-alpha: 0.72;
+  --glass-border-alpha: 0.12;
+}

@@ -1,0 +1,318 @@
+/* =========================
+   Hero float animations
+   ========================= */
+@keyframes floatA { 0%,100%{ transform: translate3d(0,0,0);} 50%{ transform: translate3d(0,-10px,0);} }
+@keyframes floatB { 0%,100%{ transform: translate3d(0,0,0);} 50%{ transform: translate3d(8px,-6px,0);} }
+@keyframes floatC { 0%,100%{ transform: translate3d(0,0,0);} 50%{ transform: translate3d(-6px,8px,0);} }
+
+.floaty{ animation-timing-function: ease-in-out; will-change: transform; }
+.floaty-1{ animation: floatA 4.6s infinite; }
+.floaty-2{ animation: floatB 5.4s infinite; }
+.floaty-3{ animation: floatC 6.2s infinite; }
+.floaty-4{ animation: floatB 4.9s infinite; }
+.floaty-5{ animation: floatA 5.8s infinite; }
+
+.scroll-indicator{ animation: floatA 3.2s infinite; }
+.hero-photo-card{ box-shadow: 0 20px 60px rgba(0,0,0,.45); }
+
+/* =========================
+   HERO: círculo + ring (TRAVADO / LINEAR)
+   ========================= */
+
+.hero-orbit{
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 520px;
+  height: 520px;
+
+  /* garante que o grid/flex nunca “recentralize” isso */
+  align-self: flex-start;
+  margin: 0;
+}
+
+.hero-float{
+  animation: heroFloat 6.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes heroFloat{
+  0%,100%{ transform: translate3d(0,0,0); }
+  50%{ transform: translate3d(0,-10px,0); }
+}
+
+.hero-photo-ring{
+  box-sizing: border-box;
+  position: relative;
+  width: 420px;
+  height: 420px;
+  border-radius: 9999px;
+  padding: 6px;
+
+  background: conic-gradient(
+    from 210deg,
+    #a855f7,
+    #7c3aed,
+    #5906a7,
+    #a855f7
+  );
+
+  box-shadow:
+    0 18px 60px rgba(168,85,247,.18),
+    0 6px 20px rgba(0,0,0,.18);
+
+  overflow: hidden;
+}
+
+.hero-photo{
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.hero-photo img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 50%;
+  border-radius: inherit;
+}
+
+/* =========================
+   ABAIXO DE lg (1024) = tamanho “mobile/tablet” fixo
+   (alinha com layout tailwind)
+   ========================= */
+@media (max-width: 1023px){
+  .hero-orbit{
+    width: 420px;
+    height: 420px;
+  }
+  .hero-photo-ring{
+    width: 420px;
+    height: 420px;
+  }
+}
+
+/* mobile pequeno: evita estourar */
+@media (max-width: 380px){
+  .hero-orbit{
+    width: calc(100vw - 32px);
+    height: calc(100vw - 32px);
+  }
+  .hero-photo-ring{
+    width: calc(100vw - 96px);
+    height: calc(100vw - 96px);
+  }
+}
+
+
+/* =========================
+   Mobile fixes (hero + marquee)
+   ========================= */
+@media (max-width: 1024px){
+  #home{
+    height: auto;
+    min-height: 100vh;
+    padding-bottom: 110px;
+  }
+
+  .scroll-indicator{
+    bottom: 18px;
+    margin-top: 18px;
+  }
+
+  /* REMOVIDO: .hero-photo { width: 88%; }  (isso quebrava o ring) */
+
+  .icons-marquee{
+    --marquee-speed: 12s;
+    --icon-h: 50px;
+    --tile-w: 78px;
+    --gap: 24px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 640px){
+  .icons-marquee{
+    --marquee-speed: 10.5s;
+    --icon-h: 46px;
+    --tile-w: 72px;
+    --gap: 20px;
+    height: 56px;
+  }
+}
+
+
+/* =========================================
+   HERO — FIX LIGHT/DARK (textos + ícones)
+   ========================================= */
+
+/* 1) impede “vazamento” horizontal por textos/linhas longas */
+#home{
+  overflow-x: clip; /* melhor que hidden (não cria scroll estranho) */
+}
+
+/* 2) garante quebra de linha e nada passando da tela */
+#home h1,
+#home h2,
+#home p,
+#home a,
+#home span{
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* 3) CORES DO HERO por tema (sem depender de text-white do Tailwind) */
+/* DARK (padrão) */
+html.dark #home{
+  color: rgba(255,255,255,0.92);
+}
+html.dark #home .hero-subtitle,
+html.dark #home .hero-desc{
+  color: rgba(255,255,255,0.72);
+}
+
+/* LIGHT */
+html:not(.dark) #home{
+  color: rgba(15,23,42,0.92); /* texto principal escuro */
+}
+html:not(.dark) #home .hero-subtitle,
+html:not(.dark) #home .hero-desc{
+  color: rgba(15,23,42,0.68); /* subtítulo/descrição */
+}
+
+/* 4) “mata” textos brancos do Tailwind dentro do hero no LIGHT */
+html:not(.dark) #home .text-white,
+html:not(.dark) #home [class*="text-white"]{
+  color: rgba(15,23,42,0.92) !important;
+}
+
+/* =========================================
+   ÍCONES (GH / X / IN) — mais visibilidade
+   ========================================= */
+
+/* Tente mirar no container "Acompanhe meu trabalho". */
+#home .social a{
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease, border-color .2s ease, color .2s ease;
+}
+
+/* DARK social */
+html.dark #home .social a{
+  background: rgba(18,18,22,0.50);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.88);
+  box-shadow:
+    0 10px 26px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+html.dark #home .social a:hover{
+  transform: translateY(-1px);
+  background: rgba(28,28,34,0.70);
+  box-shadow:
+    0 14px 32px rgba(0,0,0,0.55),
+    0 0 18px rgba(168,85,247,0.16),
+    inset 0 1px 0 rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.95);
+  border-color: var(--color-purple-500)
+}
+
+/* LIGHT social (mais contraste pra não sumir no branco) */
+html:not(.dark) #home .social a{
+  background: rgba(255,255,255,0.78);
+  border: 1px solid rgba(15,23,42,0.16);
+  color: rgba(15,23,42,0.78);
+  box-shadow:
+    0 10px 26px rgba(15,23,42,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.85);
+}
+html:not(.dark) #home .social a:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.90);
+  border-color: rgba(168,85,247,0.22);
+  box-shadow:
+    0 14px 34px rgba(15,23,42,0.16),
+    0 0 0 1px rgba(168,85,247,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.90);
+  color: rgba(88,28,135,0.92);
+
+}
+
+/* se GH/X/in forem texto (ex: "GH"), dá um “peso” */
+#home .social a{
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+/* =========================================
+   Ajuste fino: em telas pequenas, evita aperto
+   ========================================= */
+@media (max-width: 640px){
+  #home .social{
+    gap: 10px;
+  }
+}
+
+/* =========================================
+   HERO — FIX (chip + nome) no LIGHT
+   ========================================= */
+
+html:not(.dark) #home{
+  color: rgba(15,23,42,0.92);
+}
+
+/* --- CHIP / BADGE (o span do badge) ---
+   Tenho no HTML:
+   <span class="... border border-gray-800 bg-white/5 text-sm text-gray-200"> */
+html:not(.dark) #home .reveal > span.inline-flex.items-center{
+  background: rgba(255,255,255,0.72) !important;
+  border-color: rgba(15,23,42,0.14) !important;
+  color: rgba(15,23,42,0.72) !important;
+  box-shadow:
+    0 10px 26px rgba(15,23,42,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.85);
+}
+
+/* “bolinha” roxa (só garantindo contraste) */
+html:not(.dark) #home .reveal > span.inline-flex.items-center .bg-purple-400{
+  filter: saturate(1.05);
+}
+
+/* --- INTRO / NOME “Emmanuel” ---
+   Tenho no HTML:
+   Hey, I'm <span class="font-semibold text-white">Emmanuel</span> */
+html:not(.dark) #home p .text-white{
+  color: rgba(15,23,42,0.92) !important;
+}
+
+/* Ajuste leve dos parágrafos do hero no LIGHT */
+html:not(.dark) #home .text-gray-300{
+  color: rgba(15,23,42,0.70) !important;
+}
+html:not(.dark) #home .text-gray-400{
+  color: rgba(15,23,42,0.62) !important;
+}
+html:not(.dark) #home .text-gray-200{
+  color: rgba(15,23,42,0.72) !important;
+}
+
+/* CTA secundário (Download CV) no LIGHT: não fica “apagado” */
+html:not(.dark) #home a.border-gray-700{
+  border-color: rgba(15,23,42,0.18) !important;
+  background: rgba(255,255,255,0.60) !important;
+  color: rgba(15,23,42,0.82) !important;
+}
+
+html:not(.dark) #home a.border-gray-700:hover{
+  border-color: var(--color-purple-500) !important;
+}
+

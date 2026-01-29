@@ -1,0 +1,443 @@
+/* =========================
+   Global media safety
+   ========================= */
+img, video, canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =========================
+   CAROUSELS (design + dev)
+   ========================= */
+
+/* viewport */
+#design-viewport,
+#dev-viewport{
+  position: relative;
+}
+
+/* trilho */
+#design-carousel,
+#dev-carousel{
+  will-change: transform;
+}
+
+/* slide base */
+.carousel-slide{
+  scroll-snap-align: center;
+}
+
+/* ---------- preview ---------- */
+
+.project-preview{
+  width:100%;
+  height: clamp(280px, 48vh, 420px);
+  border-radius: 24px;
+  overflow:hidden;
+  border:1px solid rgb(var(--border) / .08);
+  background: rgb(var(--panel) / .25);
+box-shadow: -1px 28px 24px -6px rgba(0,0,0,0.32);
+-webkit-box-shadow: -1px 28px 24px -6px rgba(0,0,0,0.32);
+-moz-box-shadow: -1px 28px 24px -6px rgba(0,0,0,0.32);
+}
+
+.project-preview img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+
+.carousel-slide:hover .project-preview img{
+  transform: scale(1.04);
+}
+
+/* ---------- meta ---------- */
+
+.project-meta{
+  width:100%;
+  max-width: 720px;
+  margin-top: 2.2rem;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  gap:1.1rem;
+}
+
+.project-title{
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight:700;
+  letter-spacing:-0.02em;
+}
+
+.project-desc{
+  color: rgb(var(--fg) / .65);
+  line-height:1.6;
+}
+
+/* ---------- stacks ---------- */
+
+.project-stacks{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:.6rem;
+  margin-top:.3rem;
+}
+
+.stack-pill{
+  padding:.35rem .7rem;
+  border-radius:999px;
+  font-size:.75rem;
+  font-weight:500;
+  background: rgb(var(--fg) / .06);
+  color: rgb(var(--fg) / .8);
+  border:1px solid rgb(var(--border) / .08);
+}
+
+/* ---------- links ---------- */
+
+.project-links{
+  display:flex;
+  justify-content:center;
+  gap:1rem;
+  margin-top:.8rem;
+}
+
+.primary-link,
+.secondary-link{
+  padding:.55rem 1.1rem;
+  border-radius:999px;
+  font-size:.85rem;
+  font-weight:600;
+  transition:.25s ease;
+  text-align:center;
+}
+
+.primary-link{
+  background: rgb(var(--accent) / 1);
+  color: #fff;
+}
+
+.primary-link:hover{
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.secondary-link{
+  border:1px solid rgb(var(--border) / .12);
+  color: rgb(var(--fg) / .9);
+  background: rgb(var(--fg) / .04);
+}
+
+.secondary-link:hover{
+  background: rgb(var(--fg) / .08);
+}
+
+/* ---------- navigation arrows ---------- */
+
+.carousel-nav{
+  position:absolute;
+  top:50%;
+  transform: translateY(-50%);
+  width:48px;
+  height:48px;
+  border-radius:999px;
+  display:grid;
+  place-items:center;
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  transition:
+    background .25s ease,
+    box-shadow .25s ease,
+    transform .25s ease;
+
+  z-index:10;
+}
+
+html:not(.dark) .carousel-nav{
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(255,255,255,0.65);
+
+  color: rgba(30,30,35,0.9);
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.65);
+}
+
+html:not(.dark) .carousel-nav:hover{
+  background: rgba(255,255,255,0.7);
+
+  box-shadow:
+    0 10px 26px rgba(0,0,0,0.16),
+    inset 0 1px 0 rgba(255,255,255,0.75);
+
+  transform: translateY(-50%) scale(1.05);
+}
+
+html.dark .carousel-nav{
+  background: rgba(18,18,22,0.7);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  /* ícone sempre legível */
+  color: #ffffff;
+
+  /* BORDA mais clara para fundos brancos */
+  border: 1px solid rgba(255,255,255,0.22);
+
+  /* separação real do fundo claro */
+  box-shadow:
+    0 10px 28px rgba(0,0,0,0.55),   /* profundidade */
+    0 0 0 1px rgba(0,0,0,0.35),     /* recorte visual */
+    0 0 14px rgba(168,85,247,0.22); /* identidade sutil */
+
+  transition:
+    background .25s ease,
+    box-shadow .25s ease,
+    transform .25s ease;
+}
+
+html.dark .carousel-nav:hover{
+  background: rgba(24,24,30,0.82);
+
+  box-shadow:
+    0 14px 36px rgba(0,0,0,0.7),
+    0 0 0 1px rgba(255,255,255,0.18),
+    0 0 22px rgba(168,85,247,0.35);
+
+  transform: translateY(-50%) scale(1.06);
+}
+
+.carousel-nav.left{ left:1rem; }
+.carousel-nav.right{ right:1rem; }
+
+.carousel-nav:hover{
+  background: rgb(var(--accent) / .18);
+  color:#fff;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.carousel-nav .chev{
+  width:22px;
+  height:22px;
+}
+
+/* =========================
+   Section chip (Projects)
+   ========================= */
+
+.section-chip{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.section-dot{
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(168, 85, 247, 0.95);
+  box-shadow: 0 0 0 6px rgba(168, 85, 247, 0.12);
+}
+
+#design-projects > div > header,
+#dev-projects > div > header{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* efeito no desktop */
+#design-projects .section-chip,
+#dev-projects .section-chip{
+  transform: translateY(30px);
+}
+
+/* =========================
+   CHIP FIX (mobile/tablet)
+   ========================= */
+
+#dev-projects > div > header,
+#design-projects > div > header{
+  position: relative;
+  z-index: 20;
+}
+
+#dev-projects .section-chip,
+#design-projects .section-chip{
+  position: relative;
+  z-index: 21;
+  max-width: calc(100vw - 32px);
+  white-space: nowrap;
+}
+
+/* tablet/mobile: remove o translate e cria respiro */
+@media (max-width: 1048px){
+  #dev-projects .section-chip,
+  #design-projects .section-chip{
+    transform: none !important;
+    margin-top: 10px;
+  }
+
+  #dev-projects > div > header,
+  #design-projects > div > header{
+    padding-bottom: 14px;
+  }
+}
+
+@media (max-width: 360px){
+  #dev-projects .section-chip,
+  #design-projects .section-chip{
+    font-size: 13px;
+    padding: 9px 12px;
+  }
+}
+
+/* =========================
+   MOBILE — SLIDE 100% CENTRALIZADO
+   ========================= */
+
+@media (max-width: 640px){
+
+  /* mobile: arredondamento leve */
+  .project-preview{
+    border-radius: 18px;
+  }
+
+  /* viewport = área útil real */
+  #dev-viewport,
+  #design-viewport{
+    padding-inline: 0;
+    overflow: hidden;
+  }
+
+  /* trilho deve caber na tela (mata w-max do tailwind via layout) */
+  #dev-carousel,
+  #design-carousel{
+    width: 100%;
+    max-width: 100%;
+    gap: 0;
+  }
+
+  /* slide ocupa 100% real */
+  #dev-carousel .carousel-slide,
+  #design-carousel .carousel-slide{
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* preview ajustado */
+  .project-preview{
+    width: 100%;
+    height: clamp(220px, 38vh, 300px);
+  }
+
+  /* meta com padding lateral seguro */
+  .project-meta{
+    width: 100%;
+    max-width: none;
+    padding-inline: 16px;
+    margin-top: 1.25rem;
+    overflow: hidden;
+  }
+
+  /* quebra qualquer string grande */
+  .project-title,
+  .project-desc{
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* botões consistentes */
+  .project-links{
+    display:flex;
+    justify-content:center;
+    gap: 12px;
+  }
+
+  .primary-link,
+  .secondary-link{
+    width: 100%;
+    max-width: 160px;
+  }
+
+  /* setas: menores no mobile */
+  .carousel-nav{
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* =========================
+   MOBILE BAIXO (iPhone SE etc)
+   ========================= */
+
+@media (max-width: 640px) and (max-height: 700px){
+
+  /* reduz top do header (pt-24 do tailwind) */
+  #dev-projects header,
+  #design-projects header{
+    padding-top: 72px !important;
+  }
+
+  /* preview menor pra caber */
+  .project-preview{
+    height: clamp(170px, 26vh, 240px) !important;
+  }
+
+  /* comprime meta */
+  .project-meta{
+    margin-top: .9rem !important;
+    gap: .75rem !important;
+  }
+
+  .project-title{
+    font-size: 1.55rem !important;
+    line-height: 1.15 !important;
+  }
+
+  .project-desc{
+    font-size: .95rem !important;
+    line-height: 1.45 !important;
+  }
+
+  .project-stacks{
+    gap: .45rem !important;
+  }
+
+  .stack-pill{
+    padding: .3rem .55rem !important;
+    font-size: .72rem !important;
+  }
+
+  .primary-link,
+  .secondary-link{
+    padding: .48rem .8rem !important;
+    font-size: .8rem !important;
+  }
+
+  /* setas menores e levemente mais pra cima */
+  .carousel-nav{
+    width: 36px !important;
+    height: 36px !important;
+    top: 46% !important;
+  }
+}

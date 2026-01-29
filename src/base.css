@@ -1,0 +1,139 @@
+/* =========================
+   Mini reset seguro (leve)
+   ========================= */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+img, svg, video, canvas, audio, iframe, embed, object {
+  display: block;
+  vertical-align: middle;
+}
+
+img, video { max-width: 100%; height: auto; }
+
+a { color: inherit; text-decoration: none; }
+
+
+/* =========================
+   BASE
+   - globals seguros
+   - sem componentes aqui
+   ========================= */
+
+html{
+  scroll-behavior: smooth;
+}
+
+html, body{
+  height: 100%;
+}
+
+/* garante que o tema vem das variáveis (tokens.css) */
+body{
+  margin: 0;
+  background: rgb(var(--bg) / 1);
+  color: rgb(var(--fg) / 1);
+}
+
+html, body{
+  overflow-x: hidden;
+}
+
+/* remove scrollbar visual  */
+.scrollbar-none::-webkit-scrollbar{
+  display: none;
+}
+.scrollbar-none{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* =========================
+   Reveal / In-view (global)
+   ========================= */
+
+.reveal,
+.reveal-orbit{
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(6px);
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease,
+    filter 700ms ease;
+  transition-delay: var(--d, 0ms);
+}
+
+.reveal.is-in,
+.reveal-orbit.is-in{
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.reveal.is-inview{
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* órbita: entra com scale */
+.reveal-orbit{
+  transform: translateY(18px) scale(.96);
+}
+.reveal-orbit.is-in{
+  transform: translateY(0) scale(1);
+}
+
+/* versão baseada em atributo  */
+[data-reveal]{
+  opacity: 0;
+  transform: translateY(14px);
+  filter: blur(4px);
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease,
+    filter 700ms ease;
+  transition-delay: var(--d, 0ms);
+  will-change: opacity, transform, filter;
+}
+
+[data-reveal].is-inview{
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* =========================
+   Acessibilidade
+   ========================= */
+
+@media (prefers-reduced-motion: reduce){
+  html{
+    scroll-behavior: auto;
+  }
+
+  .icons-track{
+  animation: none !important;
+  transform: translate3d(0,0,0) !important;
+  }
+
+  .hero-float,
+  .scroll-indicator{
+    animation: none !important;
+  }
+
+  .reveal,
+  .reveal-orbit,
+  [data-reveal]{
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+#home{
+  padding-top: calc(var(--header-h, 18px) + 16px);
+}

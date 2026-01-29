@@ -1,0 +1,442 @@
+/* =========================
+   CONTACT — Apple glass window (LIGHT + DARK)
+   ========================= */
+
+/* ---------------------------------
+   Section: snap limpo / sem linha
+---------------------------------- */
+#contact{
+  scroll-margin-top: var(--header-h, 96px);
+  border-top: none !important;
+  overflow: hidden;               /* evita artefatos/1px e rolagem lateral */
+  align-items: flex-start;        /* começa do topo */
+  justify-content: center;        /* centraliza horizontal */
+}
+
+/* remove gap superior + mantém tudo “encaixado” */
+#contact > .w-full{
+  padding-top: 0;
+  padding-bottom: clamp(10px, 2vh, 18px);
+}
+
+/* ---------------------------------
+   Window: container principal
+---------------------------------- */
+#contact .contact-window{
+  position: relative;
+  width: min(1100px, 100%);
+  border-radius: 22px;
+  box-shadow: 0 30px 110px rgba(0,0,0,.18);
+}
+
+/* glow sutil (dark/light) */
+#contact .contact-window::before{
+  content:"";
+  position:absolute;
+  inset:-70px;
+  background: radial-gradient(circle at 40% 10%, rgba(168,85,247,.18), transparent 55%);
+  filter: blur(22px);
+  opacity: .55;
+  pointer-events:none;
+}
+
+/* tema da janela */
+html:not(.dark) #contact .contact-window{
+  border: 1px solid rgba(17,24,39,0.10) !important;
+  background: rgba(255,255,255,0.55) !important;
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+html.dark #contact .contact-window{
+  border: 1px solid rgba(255,255,255,0.10) !important;
+  background: rgba(3,7,18,0.55) !important;
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+/* top bar: melhora contraste */
+#contact .contact-window > div:first-child{
+  border-bottom: 1px solid rgba(255,255,255,0.20);
+}
+
+/* “contact.app” sempre legível */
+html:not(.dark) #contact .contact-window .text-gray-400.tracking-wide{
+  color: rgba(17,24,39,.55) !important;
+}
+html.dark #contact .contact-window .text-gray-400.tracking-wide{
+  color: rgba(229,231,235,.45) !important;
+}
+
+/* textos gerais dentro da janela no light */
+html:not(.dark) #contact .contact-window .text-gray-100{
+  color: rgba(17,24,39,0.92) !important;
+}
+html:not(.dark) #contact .contact-window .text-gray-400{
+  color: rgba(17,24,39,0.56) !important;
+}
+
+/* padding interno e grid */
+#contact .contact-window > div:last-child{
+  padding: clamp(14px, 2.2vw, 22px) !important;
+}
+
+#contact .contact-window .grid{
+  gap: clamp(16px, 2vw, 26px) !important;
+  align-items: start;
+}
+
+/* ---------------------------------
+   Left column
+---------------------------------- */
+#contact .contact-left{
+  min-height: unset !important;
+  gap: 18px;
+}
+
+#contact .contact-left .space-y-4{
+  margin-bottom: 6px;
+}
+
+#contact .contact-left h2{
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+#contact .contact-left p{
+  line-height: 1.6;
+}
+
+/* wrapper dos cards (tira centralização dura) */
+#contact .contact-info-wrap{
+  justify-content: flex-start !important;
+  align-items: flex-end;
+  padding-top: 8px;
+}
+
+/* =========================================
+   CONTACT INFO (Email / Location / Response)
+   ========================================= */
+
+/* stack com respiro consistente */
+.contact-info{
+  width: 100%;
+  max-width: 460px;
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+/* card (hierarquia + brilho interno) */
+.contact-info-item{
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 14px;
+  align-items: center;
+
+  padding: 14px 16px;
+  border-radius: 18px;
+
+  background: rgb(var(--glass-bg) / .18);
+  border: 1px solid rgb(var(--border) / .12);
+
+  box-shadow:
+    0 18px 50px rgba(0,0,0,.16),
+    inset 0 1px 0 rgba(255,255,255,.16);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  transition: transform .22s cubic-bezier(.2,.8,.2,1), border-color .22s ease, background .22s ease;
+  will-change: transform;
+}
+
+.contact-info-item:hover{
+  transform: translateY(-2px);
+  border-color: rgb(var(--accent) / .22);
+  background: rgb(var(--glass-bg) / .22);
+}
+
+/* ícone com “tile” */
+.contact-info-ic{
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+
+  background: rgb(var(--accent) / .14);
+  border: 1px solid rgb(var(--accent) / .22);
+  color: rgb(var(--accent) / .95);
+
+  box-shadow:
+    0 10px 26px rgba(168,85,247,.10);
+}
+
+.contact-info-ic svg{
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* texto com hierarquia clara */
+.contact-info-txt{
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.contact-info-label{
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: .02em;
+  line-height: 1.1;
+  margin: 0;
+  color: rgb(var(--fg) / .68);
+}
+
+.contact-info-value{
+  margin: 0;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: .01em;
+  color: rgb(var(--fg) / .92);
+  text-decoration: none;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* hover do e-mail (link) com roxo */
+.contact-info-value:hover{
+  color: rgb(var(--accent) / 1);
+}
+
+/* ajustes específicos do LIGHT  */
+html:not(.dark) .contact-info-item{
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(17,24,39,.10);
+  box-shadow:
+    0 18px 44px rgba(0,0,0,.08),
+    inset 0 1px 0 rgba(255,255,255,.70);
+}
+
+html:not(.dark) .contact-info-label{
+  color: rgba(17,24,39,.58);
+}
+html:not(.dark) .contact-info-value{
+  color: rgba(17,24,39,.88);
+}
+
+/* ---------------------------------
+   Form: legibilidade light + dark ok
+---------------------------------- */
+#contact form{
+  margin-top: 2px;
+}
+
+#contact form .space-y-2{
+  gap: 6px;
+}
+
+#contact form label{
+  font-size: 12px;
+  letter-spacing: .01em;
+}
+
+/* inputs/textarea — light */
+html:not(.dark) #contact input,
+html:not(.dark) #contact textarea{
+  background: rgba(255,255,255,0.70) !important;
+  border: 1px solid rgba(17,24,39,0.12) !important;
+  color: rgba(17,24,39,0.90) !important;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+}
+
+html:not(.dark) #contact input::placeholder,
+html:not(.dark) #contact textarea::placeholder{
+  color: rgba(17,24,39,0.38) !important;
+}
+
+html:not(.dark) #contact form label{
+  color: rgba(17,24,39,0.68) !important;
+}
+
+/* inputs/textarea — dark */
+html.dark #contact input,
+html.dark #contact textarea{
+  background: rgba(17,24,39,0.35) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+/* botão enviar */
+#contact .send_contact{
+  border-radius: 14px !important;
+  padding: 12px 14px !important;
+  font-weight: 700;
+  letter-spacing: .01em;
+  box-shadow: 0 18px 50px rgba(168,85,247,0.20);
+  transition: transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s ease, background .22s ease;
+  will-change: transform;
+}
+
+#contact .send_contact:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 22px 70px rgba(168,85,247,0.26);
+}
+
+html:not(.dark) #contact .send_contact{
+  color: #fff !important;
+  box-shadow:
+    0 20px 60px rgba(168,85,247,0.22),
+    0 10px 24px rgba(0,0,0,0.10);
+}
+
+/* ---------------------------------
+   Find me on (título + ícones)
+---------------------------------- */
+#contact .contact-findme{
+  margin-top: clamp(12px, 2vh, 18px);
+  gap: 10px;
+}
+
+.contact-findme-title{
+  color: rgb(var(--fg) / .92);
+}
+
+html:not(.dark) .contact-findme-title{
+  color: rgba(17,24,39,.92);
+}
+
+#contact .contact-findme p.text-gray-200{
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  line-height: 1.15;
+}
+
+#contact .contact-findme .flex.gap-6{
+  gap: 16px;
+}
+
+/* ícones: base + hover roxo (dark e light) */
+.contact-findme-icons a{
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+
+  color: rgb(var(--fg) / .86);
+  transition: transform .22s cubic-bezier(.2,.8,.2,1), color .18s ease, background .18s ease, border-color .18s ease;
+  will-change: transform;
+}
+
+.contact-findme-icons a svg{
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+html:not(.dark) .contact-findme-icons a{
+  color: rgba(17,24,39,.88);
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(17,24,39,0.10);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.08);
+}
+
+html.dark .contact-findme-icons a{
+  color: rgba(255,255,255,.78);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+/* hover roxo + movimento smooth (nos dois temas) */
+.contact-findme-icons a:hover{
+  transform: translateY(-4px);
+  color: rgb(var(--accent) / 1) !important;
+  border-color: rgba(168,85,247,0.35) !important;
+  background: rgba(168,85,247,0.10) !important;
+  filter: drop-shadow(0 10px 24px rgba(168,85,247,.22));
+}
+
+/* assinatura */
+#contact .contact-findme p.text-gray-500{
+  margin-top: 6px;
+  font-size: 12px;
+}
+
+/* ---------------------------------
+   Responsividade por ALTURA (monitores baixos)
+---------------------------------- */
+@media (max-height: 780px){
+  #contact .contact-window > div:last-child{ padding: 14px !important; }
+  #contact .contact-left h2{ font-size: 28px; }
+  #contact .contact-left p{ font-size: 14px; }
+  .contact-info-item{ padding: 12px 14px; }
+  #contact .send_contact{ padding: 11px 12px !important; }
+  #contact .contact-findme{ margin-top: 10px; }
+}
+
+@media (max-height: 680px){
+  #contact .contact-findme p.text-gray-200{ font-size: 1rem; }
+  .contact-findme-icons a{ width: 40px; height: 40px; }
+}
+
+/* =========================================
+   CONTACT INFO — DARK alinhado ao TOPBAR
+   ========================================= */
+
+html.dark .contact-info-item{
+  /* vidro mais “clean” e mais opaco (igual topbar) */
+  background: rgba(18,18,22,0.10) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  /* sombra menos “peso”, mais suave */
+box-shadow: 1px 7px 22px -7px rgba(0,0,0,0.75);
+-webkit-box-shadow: 1px 7px 22px -7px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px 7px 22px -7px rgba(0,0,0,0.75);
+}
+
+/* brilho interno bem sutil  */
+html.dark .contact-info-item::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius: inherit;
+  pointer-events:none;
+  background:
+    radial-gradient(120% 140% at 20% 0%, rgba(255,255,255,0.06), transparent 55%),
+    radial-gradient(120% 140% at 85% 0%, rgba(168,85,247,0.05), transparent 60%);
+  opacity:.95;
+}
+
+/* tile do ícone: menos roxo, mais integrado */
+html.dark .contact-info-ic{
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
+  color: rgba(168,85,247,0.92) !important;
+
+  box-shadow:
+    0 12px 26px rgba(0,0,0,0.35),
+    0 0 14px rgba(168,85,247,0.10) !important;
+}
+
+/* garante que ícones "stroke" (pin/clock) acompanhem a cor */
+html.dark .contact-info-ic svg{
+  fill: none !important;
+  stroke: currentColor !important;
+}
+
+/* mail via <use> às vezes vem preenchido: força consistência */
+html.dark .contact-info-ic svg use{
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+
+/* label/value mais “topbar” (menos contraste duro) */
+html.dark .contact-info-label{ color: rgba(255,255,255,.62) !important; }
+html.dark .contact-info-value{ color: rgba(255,255,255,.92) !important; }
