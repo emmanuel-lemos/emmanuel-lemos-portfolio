@@ -1,7 +1,6 @@
-
-// js/config.demo.js
+// js/config.local.js
 window.__PORTFOLIO__ = {
-  email: "hello@example.com",
+  email: "myd.artcore@gmail.com",
   location: "São Paulo, Brazil",
   responseTime: "24h",
   cvUrl: "https://drive.google.com/file/d/1ABCxyz123456/view",
@@ -9,9 +8,9 @@ window.__PORTFOLIO__ = {
     avatar: "/assets/images/profile_teste.jpg",
   },
   socials: {
-    github: "https://github.com/your-user",
-    linkedin: "https://linkedin.com/in/your-user",
-    instagram: "https://instagram.com/",
-    whatsapp: "https://wa.me/5511999999999",
+    github: "https://github.com/emmanuel-lemos",
+    linkedin: "https://www.linkedin.com/in/emmanuel-lemos-1a2400125/",
+    instagram: "https://www.instagram.com/2n.dev",
+    whatsapp: "https://wa.me/XXXX"
   },
 };
