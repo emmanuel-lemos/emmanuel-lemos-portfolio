@@ -9,6 +9,7 @@ public/js/x/
 public/js/config.local.js
 public/js/i18n.local.js
 assets/images/XX/
+assets/images/mocks/
 
 # Build
 dist/
