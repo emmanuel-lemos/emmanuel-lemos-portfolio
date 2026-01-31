@@ -1548,28 +1548,10 @@
   </main>
 
 <!-- I18N (local com fallback demo) -->
-<script src="/js/i18n.local.js" onerror="loadDemoI18N()"></script>
-<script>
-  function loadDemoI18N() {
-    const s = document.createElement("script");
-    s.src = "/js/i18n.demo.js";
-    s.onload = function () {
-      // Reaplica i18n depois do demo carregar
-      window.__APPLY_LANG__?.();
-    };
-    document.head.appendChild(s);
-  }
-</script>
+<script src="/js/i18n.demo.js"></script>
 
   <!-- CONFIG (local com fallback demo) -->
-  <script src="/js/config.local.js"></script>
-  <script>
-    if (!window.__PORTFOLIO__) {
-      const s = document.createElement("script");
-      s.src = "/js/config.demo.js";
-      document.head.appendChild(s);
-    }
-  </script>
+  <script src="/js/config.demo.js"></script>
 
   <!-- Vite entry (carrega main.css + seu src/js/main.js) -->
   <script type="module" src="/src/main.js"></script>

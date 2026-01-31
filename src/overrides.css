@@ -109,3 +109,52 @@ html:not(.dark) #home .home_hire{
   color: #fff !important;
 }
 
+/* =========================================================
+   MOBILE SNAP: snap só para troca de seção
+   - entra na seção com snap
+   - dentro da seção vira scroll normal
+   - mobile até 1048px
+   ========================================================= */
+
+@media (max-width: 1048px){
+
+  /* 1) tira o "grude" do mandatory (é isso que puxa de volta) */
+  main.snap-y.snap-mandatory{
+    scroll-snap-type: y proximity !important;
+  }
+
+  /* 2) por padrão, nenhuma section faz snap no mobile */
+  main.snap-y > section{
+    scroll-snap-align: none !important;
+    scroll-snap-stop: normal !important;
+  }
+
+  /* 3) só as seções que você quer como “página” (troca com snap) */
+  #home,
+  #skills,
+  #experience,
+  #design-projects,
+  #dev-projects,
+  #contact{
+    scroll-snap-align: start !important;
+  }
+
+  /* 4) projetos continuam com cara de “tela” */
+  #design-projects,
+  #dev-projects{
+    height: 100svh !important; /* respeita barra do navegador */
+  }
+
+  /* 5) seções longas: podem passar do 100vh sem ficar puxando */
+  #home,
+  #experience,
+  #contact{
+    min-height: 100svh !important;
+    height: auto !important;
+  }
+
+  /* 6) evita “chain scroll” que faz pular fácil entre seções */
+  main{
+    overscroll-behavior-y: none;
+  }
+}

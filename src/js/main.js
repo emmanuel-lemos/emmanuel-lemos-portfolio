@@ -139,13 +139,12 @@ function initInfiniteCarousel({
   const track = qs(trackId);
   if (!viewport || !track) return;
 
+  // estilo pra pulo sem transição
   if (!document.getElementById("__carouselJumpStyle")) {
     const st = document.createElement("style");
     st.id = "__carouselJumpStyle";
     st.textContent = `
-      .__carousel-jumping .carousel-slide{
-        transition: none !important;
-      }
+      .__carousel-jumping .carousel-slide{ transition:none !important; }
     `;
     document.head.appendChild(st);
   }
@@ -155,12 +154,14 @@ function initInfiniteCarousel({
       el.classList.contains("carousel-slide")
     );
 
+  // guarda baseHTML (apenas 1x)
   if (!track.dataset.baseHtml) {
     const baseSlides = getSlides();
     if (baseSlides.length < 2) return;
     track.dataset.baseHtml = baseSlides.map((n) => n.outerHTML).join("");
   }
 
+  // reconstrói loop
   const baseWrapper = document.createElement("div");
   baseWrapper.innerHTML = track.dataset.baseHtml;
 
@@ -212,7 +213,10 @@ function initInfiniteCarousel({
     const s = slides[i];
     if (!s) return;
 
-    const vpW = viewport.clientWidth;
+    const vpW = viewport.clientWidth || 1;
+
+    // garante layout atualizado antes de medir
+    // (principalmente depois de mudar idioma/tema)
     const center = s.offsetLeft + s.offsetWidth / 2;
     const offset = center - vpW / 2;
 
@@ -288,29 +292,80 @@ function initInfiniteCarousel({
 
   track.addEventListener("transitionend", onTransitionEnd);
 
-  function initPosition() {
-    index = midStart;
-    requestAnimationFrame(() => {
+  // ---------- REFLOW ROBUSTO (anti-blank) ----------
+  let raf1 = 0;
+  function reflowNow() {
+    cancelAnimationFrame(raf1);
+    raf1 = requestAnimationFrame(() => {
+      // 2 frames ajuda Safari/iOS e mudanças de fonte/idioma
       translateTo(index, false);
       setActive();
       requestAnimationFrame(() => translateTo(index, false));
     });
   }
 
-  window.addEventListener("load", initPosition);
-  setTimeout(initPosition, 60);
-  setTimeout(initPosition, 220);
+  // expõe reflow global (pra tema/idioma chamarem)
+  window.__REFLOW_CAROUSELS__ ||= [];
+  window.__REFLOW_CAROUSELS__.push(reflowNow);
+  window.__REFLOW_CAROUSELS_RUN__ = () => {
+    (window.__REFLOW_CAROUSELS__ || []).forEach((fn) => {
+      try { fn(); } catch (_) {}
+    });
+  };
 
+  function initPosition() {
+    index = midStart;
+    reflowNow();
+  }
+
+  // reflow em loads comuns
+  window.addEventListener("load", initPosition);
+
+  // reflow ao entrar na viewport (resolve “subi/desci e sumiu”)
+  const section = viewport.closest("section");
+  if (section) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) reflowNow();
+        });
+      },
+      { threshold: 0.22 }
+    );
+    io.observe(section);
+  }
+
+  // reflow em resize/orientation
   let rt;
   window.addEventListener("resize", () => {
     clearTimeout(rt);
-    rt = setTimeout(() => translateTo(index, false), 90);
+    rt = setTimeout(reflowNow, 80);
+  });
+  window.addEventListener("orientationchange", () => {
+    setTimeout(reflowNow, 120);
+  });
+
+  // reflow quando imagens dentro do carousel carregarem (lazy load)
+  track.querySelectorAll("img").forEach((img) => {
+    if (img.complete) return;
+    img.addEventListener("load", reflowNow, { once: true });
+    img.addEventListener("error", reflowNow, { once: true });
+  });
+
+  // reflow quando a aba volta (Safari às vezes perde layout)
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) reflowNow();
   });
 
   window.addEventListener("blur", () => {
     isAnimating = false;
   });
+
+  // init (sem “pulos”)
+  setTimeout(initPosition, 40);
+  setTimeout(initPosition, 180);
 }
+
 
 // init carousels (Design/Dev)
 initInfiniteCarousel({
@@ -422,6 +477,8 @@ initInfiniteCarousel({
 
     localStorage.setItem("theme", theme);
   }
+
+  window.__REFLOW_CAROUSELS_RUN__?.();
 
   function toggleTheme() {
     const isDark = root.classList.contains("dark");
@@ -616,6 +673,8 @@ initInfiniteCarousel({
     });
 
     localStorage.setItem("lang", lang);
+
+    window.__REFLOW_CAROUSELS_RUN__?.();
   }
 
   window.__APPLY_LANG__ = () => {
