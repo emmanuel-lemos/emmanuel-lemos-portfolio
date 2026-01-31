@@ -81,29 +81,20 @@
 }
 
 /* =========================
-   ABAIXO DE lg (1024) = tamanho “mobile/tablet” fixo
-   (alinha com layout tailwind)
+   HERO — responsivo de verdade no mobile/tablet
+   (nunca ultrapassa a largura da tela)
    ========================= */
 @media (max-width: 1023px){
   .hero-orbit{
-    width: 420px;
-    height: 420px;
+    /* 420 no máximo, mas encolhe se a viewport for menor */
+    width: min(420px, calc(100vw - 32px));
+    height: min(420px, calc(100vw - 32px));
   }
-  .hero-photo-ring{
-    width: 420px;
-    height: 420px;
-  }
-}
 
-/* mobile pequeno: evita estourar */
-@media (max-width: 380px){
-  .hero-orbit{
-    width: calc(100vw - 32px);
-    height: calc(100vw - 32px);
-  }
   .hero-photo-ring{
-    width: calc(100vw - 96px);
-    height: calc(100vw - 96px);
+    /* ring acompanha o orbit */
+    width: 100%;
+    height: 100%;
   }
 }
 

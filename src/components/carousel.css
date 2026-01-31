@@ -311,65 +311,57 @@ html.dark .carousel-nav:hover{
 }
 
 /* =========================
-   MOBILE — SLIDE 100% CENTRALIZADO
+   MOBILE — centralização correta (sem “peek” do próximo slide)
    ========================= */
-
 @media (max-width: 640px){
 
-  /* mobile: arredondamento leve */
-  .project-preview{
-    border-radius: 18px;
-  }
-
-  /* viewport = área útil real */
+  /* viewport: sem padding (o JS calcula pelo clientWidth) */
   #dev-viewport,
   #design-viewport{
-    padding-inline: 0;
+    padding-inline: 0 !important;
     overflow: hidden;
   }
 
-  /* trilho deve caber na tela (mata w-max do tailwind via layout) */
+  /* track: sem w-max / sem gap */
   #dev-carousel,
   #design-carousel{
     width: 100%;
     max-width: 100%;
-    gap: 0;
+    gap: 0 !important;
   }
 
-  /* slide ocupa 100% real */
+  /* slide: SEMPRE 100% da viewport */
   #dev-carousel .carousel-slide,
   #design-carousel .carousel-slide{
     flex: 0 0 100%;
     width: 100%;
     max-width: 100%;
+
+    /* respiro agora é aqui dentro */
+    padding-inline: 16px;
+    box-sizing: border-box;
   }
 
-  /* preview ajustado */
+  /* preview ocupa a área útil do slide */
   .project-preview{
     width: 100%;
     height: clamp(220px, 38vh, 300px);
+    border-radius: 18px;
   }
 
-  /* meta com padding lateral seguro */
+  /* meta: não precisa padding (já está no slide) */
   .project-meta{
     width: 100%;
     max-width: none;
-    padding-inline: 16px;
+    padding-inline: 0;
     margin-top: 1.25rem;
     overflow: hidden;
+    text-align: center;
   }
 
-  /* quebra qualquer string grande */
-  .project-title,
-  .project-desc{
-    overflow-wrap: anywhere;
-    word-break: break-word;
-  }
-
-  /* botões consistentes */
   .project-links{
-    display:flex;
-    justify-content:center;
+    display: flex;
+    justify-content: center;
     gap: 12px;
   }
 
@@ -379,12 +371,15 @@ html.dark .carousel-nav:hover{
     max-width: 160px;
   }
 
-  /* setas: menores no mobile */
+  /* setas: alinhadas com o padding interno visual */
   .carousel-nav{
     width: 40px;
     height: 40px;
   }
+  .carousel-nav.left{ left: 10px; }
+  .carousel-nav.right{ right: 10px; }
 }
+
 
 /* =========================
    MOBILE BAIXO (iPhone SE etc)
@@ -439,5 +434,13 @@ html.dark .carousel-nav:hover{
     width: 36px !important;
     height: 36px !important;
     top: 46% !important;
+  }
+}
+
+@media (max-width: 1048px){
+  #design-projects > div > header,
+  #dev-projects > div > header{
+    padding-top: 84px !important;
+    padding-bottom: 14px !important;
   }
 }
