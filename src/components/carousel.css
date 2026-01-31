@@ -444,3 +444,96 @@ html.dark .carousel-nav:hover{
     padding-bottom: 14px !important;
   }
 }
+
+/* =========================
+   MOBILE: snap só entre Design <-> Dev
+   ========================= */
+
+/* 1) No MOBILE, o main NÃO snapa (mas no desktop continua igual) */
+@media (max-width: 767px){
+  main{
+    scroll-snap-type: none !important;
+  }
+
+  /* 2) Só o wrapper dos projects snapa */
+  #projectsSnapWrap{
+    scroll-snap-type: y mandatory;
+  }
+
+  #projectsSnapWrap > section{
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}
+
+/* =========================
+   MOBILE: chip sticky e conteúdo abaixo (estável com i18n)
+   ========================= */
+@media (max-width: 1048px){
+
+  /* deixa o container da section com contexto pro sticky funcionar bem */
+  #design-projects > div,
+  #dev-projects > div{
+    height: 100%;
+  }
+
+  /* header do chip vira sticky dentro da section */
+  #design-projects > div > header,
+  #dev-projects > div > header{
+    position: sticky;
+    top: 64px;             /* ajuste fino: evita ficar embaixo do header fixo */
+    z-index: 40;
+
+    /* remove “dança” de padding quando reflow */
+    padding-top: 24px !important;   /* mantém respiro interno do chip */
+    padding-bottom: 12px !important;
+
+    /* “shield” visual atrás do chip (dark e light) */
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  html:not(.dark) #design-projects > div > header,
+  html:not(.dark) #dev-projects > div > header{
+    background: rgba(255,255,255,0.65);
+  }
+
+  /* conteúdo sempre começa abaixo do header sticky */
+  #design-projects > div > .flex-1,
+  #dev-projects > div > .flex-1{
+    align-items: flex-start !important;
+    padding-top: 10px; /* garante que nunca encosta no chip */
+    min-height: 0;
+  }
+
+  /* chip: sem translate no mobile (você já tem) e sem “pular” */
+  #design-projects .section-chip,
+  #dev-projects .section-chip{
+    transform: none !important;
+    margin-top: 0 !important;
+  }
+} 
+
+/* =========================
+   MOBILE: conteúdo começa abaixo do chip sticky
+   ========================= */
+@media (max-width: 1048px){
+
+  /* altura aproximada do header/chip (ajuste fino) */
+  :root{
+    --projects-chip-h: 86px; /* teste 78~96 */
+  }
+
+  /* empurra o conteúdo (viewport + setas + slide) pra baixo */
+  #design-projects > div > .flex-1,
+  #dev-projects > div > .flex-1{
+    padding-top: var(--projects-chip-h) !important;
+  }
+
+  /* garante que o sticky não “coma” clique/visual */
+  #design-projects > div > header,
+  #dev-projects > div > header{
+    margin-bottom: 0 !important;
+  }
+}

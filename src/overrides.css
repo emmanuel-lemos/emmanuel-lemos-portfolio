@@ -109,3 +109,27 @@ html:not(.dark) #home .home_hire{
   color: #fff !important;
 }
 
+/* =========================
+   MOBILE: remove tarja do chip + remove divisórias das sections
+   ========================= */
+@media (max-width: 1048px){
+
+  /* 1) TIRA a tarja atrás do chip (shield do sticky header) */
+  #design-projects > div > header,
+  #dev-projects > div > header{
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* 2) Remove as linhas/divisórias (border-top) das sections no mobile */
+  section{
+    border-top: 0 !important;
+  }
+
+  /* (opcional) se alguma linha ainda aparecer por causa de hr/div internos */
+  hr, .divider, .section-divider{
+    display: none !important;
+  }
+}

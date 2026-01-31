@@ -83,7 +83,7 @@
                     p-1.5"
             >
             <a role="menuitem" class="dropdown-link project_nav" href="#design-projects">
-                <span>Design Projects</span><span class="text-white/40"></span>
+                <span data-i18n="chip_design">Design Projects</span><span class="text-white/40"></span>
             </a>
             <a role="menuitem" class="dropdown-link project_nav" href="#dev-projects">
                 <span>Dev Projects</span><span class="text-white/40"></span>
@@ -993,7 +993,6 @@
   </div>
 </section>
 
-
 <section id="design-projects" class="snap-start h-screen w-full border-t border-gray-800 overflow-x-hidden"
     >
       <div class="h-full flex flex-col">
@@ -1011,7 +1010,7 @@
         </header>
 
         <!-- VIEWPORT -->
-        <div class="flex-1 min-h-0 w-full flex items-center">
+        <div class="flex-1 min-h-0 w-full flex items-start md:items-center">
           <div class="w-full overflow-hidden flex justify-center">
             <div
               id="design-viewport"
@@ -1175,11 +1174,11 @@
         <header class="max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-24 pt-24">
           <div class="section-chip" data-reveal style="--d: 0ms" aria-label="Dev Projects">
             <span class="section-dot"></span>
-            <span>Dev Projects</span>
+            <span data-i18n="chip_dev">Dev Projects</span>
           </div>
         </header>
 
-        <div class="flex-1 min-h-0 w-full flex items-center">
+        <div class="flex-1 min-h-0 w-full flex items-start md:items-center">
           <div class="w-full overflow-hidden flex justify-center">
             <div
               id="dev-viewport"
@@ -1536,7 +1535,7 @@
             </a>
           </div>
 
-          <p class="text-gray-500 text-sm mt-4">
+          <p class="text-gray-500 text-sm mt-4 text-center w-full">
             © 2026 Emmanuel Lemos. All rights reserved.
           </p>
         </div>
@@ -1548,28 +1547,10 @@
   </main>
 
 <!-- I18N (local com fallback demo) -->
-<script src="/js/i18n.local.js" onerror="loadDemoI18N()"></script>
-<script>
-  function loadDemoI18N() {
-    const s = document.createElement("script");
-    s.src = "/js/i18n.demo.js";
-    s.onload = function () {
-      // Reaplica i18n depois do demo carregar
-      window.__APPLY_LANG__?.();
-    };
-    document.head.appendChild(s);
-  }
-</script>
+<script src="/js/i18n.demo.js" onerror="loadDemoI18N()"></script>
 
   <!-- CONFIG (local com fallback demo) -->
-  <script src="/js/config.local.js"></script>
-  <script>
-    if (!window.__PORTFOLIO__) {
-      const s = document.createElement("script");
-      s.src = "/js/config.demo.js";
-      document.head.appendChild(s);
-    }
-  </script>
+  <script src="/js/config.demo.js"></script>
 
   <!-- Vite entry (carrega main.css + seu src/js/main.js) -->
   <script type="module" src="/src/main.js"></script>
