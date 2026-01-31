@@ -3,7 +3,7 @@ window.__PORTFOLIO__ = {
   email: "myd.artcore@gmail.com",
   location: "São Paulo, Brazil",
   responseTime: "24h",
-  cvUrl: "https://drive.google.com/file/d/1ABCxyz123456/view",
+  cvUrl: "https://drive.google.com/file/d/11nVcE03LmTQo1RC66LpXFohjDtNdbCkb/view?usp=sharing",
   images: {
     avatar: "/assets/images/profile_teste.jpg",
   },
