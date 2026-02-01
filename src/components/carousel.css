@@ -544,3 +544,24 @@ html.dark .carousel-nav:hover{
     flex: 0 0 auto;
   }
 }
+
+
+/* =========================
+   DESKTOP — empurrar chip e empurrar o resto junto
+   (sem mexer em snap/global)
+   ========================= */
+@media (min-width: 1049px){
+
+  /* remove o deslocamento fake */
+  #design-projects .section-chip,
+  #dev-projects .section-chip{
+    transform: none !important;
+  }
+
+  /* empurra o header de verdade (layout) */
+  #design-projects > div > header.section-head,
+  #dev-projects > div > header.section-head{
+    padding-top: 120px !important;  /* <-- ajuste fino aqui (X px) */
+    padding-bottom: 18px !important;
+  }
+}
