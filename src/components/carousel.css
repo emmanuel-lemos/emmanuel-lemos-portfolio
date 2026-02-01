@@ -537,3 +537,10 @@ html.dark .carousel-nav:hover{
     margin-bottom: 0 !important;
   }
 }
+
+@media (max-width: 1048px){
+  .dev-bottom-space{
+    height: 56px; /* 32 / 48 / 64 */
+    flex: 0 0 auto;
+  }
+}
