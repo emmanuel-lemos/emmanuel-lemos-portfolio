@@ -484,8 +484,8 @@ initInfiniteCarousel({
     { sel: "#contact h2.text-3xl", key: "contact_title" },
     { sel: "#contact p.text-gray-400.leading-relaxed", key: "contact_sub" },
 
-    { sel: '#contact label:has(+ input[type="text"])', key: "form_name" },
-    { sel: '#contact input[type="text"]', key: "form_name_ph", attr: "placeholder" },
+    { sel: '#contact label[for="cf_name"]', key: "form_name" },
+    { sel: '#contact #cf_name', key: "form_name_ph", attr: "placeholder" },
 
     { sel: '#contact label:has(+ input[type="email"])', key: "form_email" },
     { sel: '#contact input[type="email"]', key: "form_email_ph", attr: "placeholder" },

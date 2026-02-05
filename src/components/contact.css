@@ -15,7 +15,7 @@
 
 /* remove gap superior + mantém tudo “encaixado” */
 #contact > .w-full{
-  padding-top: 0;
+  padding-top: 10px;
   padding-bottom: clamp(10px, 2vh, 18px);
 }
 
@@ -440,3 +440,23 @@ html.dark .contact-info-ic svg use{
 /* label/value mais “topbar” (menos contraste duro) */
 html.dark .contact-info-label{ color: rgba(255,255,255,.62) !important; }
 html.dark .contact-info-value{ color: rgba(255,255,255,.92) !important; }
+
+/* =========================
+   DESKTOP: Contact com snap no topo E no fim
+   (continua scrollando pra baixo sem “subir de novo”)
+   ========================= */
+@media (min-width: 1049px){
+
+  /* deixa o snap “ancorar” no início e no fim da mesma seção */
+  #contact{
+    scroll-snap-align: start end;  /* <- chave */
+    scroll-snap-stop: normal;      /* não “trava” o snap */
+    overflow: visible;             /* evita cortar parte de baixo */
+  }
+
+  /* garante que o footer + assinatura tenham espaço real */
+  #contact .contact-footer{
+    padding-bottom: 42px;          /* ajuste fino (32~72) */
+  }
+}
+

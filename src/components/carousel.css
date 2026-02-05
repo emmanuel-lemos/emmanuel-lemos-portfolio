@@ -11,25 +11,24 @@ img, video, canvas {
    CAROUSELS (design + dev)
    ========================= */
 
-/* viewport */
+/* viewport (posição relativa para setas) */
 #design-viewport,
 #dev-viewport{
   position: relative;
 }
 
-/* trilho */
+/* trilho (otimiza transform) */
 #design-carousel,
 #dev-carousel{
   will-change: transform;
 }
 
-/* slide base */
+/* slide base (snap horizontal do carousel) */
 .carousel-slide{
   scroll-snap-align: center;
 }
 
 /* ---------- preview ---------- */
-
 .project-preview{
   width:100%;
   height: clamp(280px, 48vh, 420px);
@@ -37,9 +36,9 @@ img, video, canvas {
   overflow:hidden;
   border:1px solid rgb(var(--border) / .08);
   background: rgb(var(--panel) / .25);
-box-shadow: -1px 28px 24px -6px rgba(0,0,0,0.32);
--webkit-box-shadow: -1px 28px 24px -6px rgba(0,0,0,0.32);
--moz-box-shadow: -1px 28px 24px -6px rgba(0,0,0,0.32);
+  box-shadow: -1px 28px 24px -6px rgba(0,0,0,0.32);
+  -webkit-box-shadow: -1px 28px 24px -6px rgba(0,0,0,0.32);
+  -moz-box-shadow: -1px 28px 24px -6px rgba(0,0,0,0.32);
 }
 
 .project-preview img{
@@ -54,7 +53,6 @@ box-shadow: -1px 28px 24px -6px rgba(0,0,0,0.32);
 }
 
 /* ---------- meta ---------- */
-
 .project-meta{
   width:100%;
   max-width: 720px;
@@ -77,7 +75,6 @@ box-shadow: -1px 28px 24px -6px rgba(0,0,0,0.32);
 }
 
 /* ---------- stacks ---------- */
-
 .project-stacks{
   display:flex;
   flex-wrap:wrap;
@@ -97,7 +94,6 @@ box-shadow: -1px 28px 24px -6px rgba(0,0,0,0.32);
 }
 
 /* ---------- links ---------- */
-
 .project-links{
   display:flex;
   justify-content:center;
@@ -136,7 +132,6 @@ box-shadow: -1px 28px 24px -6px rgba(0,0,0,0.32);
 }
 
 /* ---------- navigation arrows ---------- */
-
 .carousel-nav{
   position:absolute;
   top:50%;
@@ -161,9 +156,7 @@ box-shadow: -1px 28px 24px -6px rgba(0,0,0,0.32);
 html:not(.dark) .carousel-nav{
   background: rgba(255,255,255,0.55);
   border: 1px solid rgba(255,255,255,0.65);
-
   color: rgba(30,30,35,0.9);
-
   box-shadow:
     0 6px 18px rgba(0,0,0,0.12),
     inset 0 1px 0 rgba(255,255,255,0.65);
@@ -171,30 +164,20 @@ html:not(.dark) .carousel-nav{
 
 html:not(.dark) .carousel-nav:hover{
   background: rgba(255,255,255,0.7);
-
   box-shadow:
     0 10px 26px rgba(0,0,0,0.16),
     inset 0 1px 0 rgba(255,255,255,0.75);
-
   transform: translateY(-50%) scale(1.05);
 }
 
 html.dark .carousel-nav{
   background: rgba(18,18,22,0.7);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-
-  /* ícone sempre legível */
   color: #ffffff;
-
-  /* BORDA mais clara para fundos brancos */
   border: 1px solid rgba(255,255,255,0.22);
-
-  /* separação real do fundo claro */
   box-shadow:
-    0 10px 28px rgba(0,0,0,0.55),   /* profundidade */
-    0 0 0 1px rgba(0,0,0,0.35),     /* recorte visual */
-    0 0 14px rgba(168,85,247,0.22); /* identidade sutil */
+    0 10px 28px rgba(0,0,0,0.55),
+    0 0 0 1px rgba(0,0,0,0.35),
+    0 0 14px rgba(168,85,247,0.22);
 
   transition:
     background .25s ease,
@@ -204,12 +187,10 @@ html.dark .carousel-nav{
 
 html.dark .carousel-nav:hover{
   background: rgba(24,24,30,0.82);
-
   box-shadow:
     0 14px 36px rgba(0,0,0,0.7),
     0 0 0 1px rgba(255,255,255,0.18),
     0 0 22px rgba(168,85,247,0.35);
-
   transform: translateY(-50%) scale(1.06);
 }
 
@@ -230,7 +211,6 @@ html.dark .carousel-nav:hover{
 /* =========================
    Section chip (Projects)
    ========================= */
-
 .section-chip{
   display: inline-flex;
   align-items: center;
@@ -264,7 +244,7 @@ html.dark .carousel-nav:hover{
   align-items:center;
 }
 
-/* efeito no desktop */
+/* efeito no desktop (padrão) */
 #design-projects .section-chip,
 #dev-projects .section-chip{
   transform: translateY(30px);
@@ -273,7 +253,6 @@ html.dark .carousel-nav:hover{
 /* =========================
    CHIP FIX (mobile/tablet)
    ========================= */
-
 #dev-projects > div > header,
 #design-projects > div > header{
   position: relative;
@@ -288,7 +267,6 @@ html.dark .carousel-nav:hover{
   white-space: nowrap;
 }
 
-/* tablet/mobile: remove o translate e cria respiro */
 @media (max-width: 1048px){
   #dev-projects .section-chip,
   #design-projects .section-chip{
@@ -311,18 +289,16 @@ html.dark .carousel-nav:hover{
 }
 
 /* =========================
-   MOBILE — centralização correta (sem “peek” do próximo slide)
+   MOBILE — centralização correta
    ========================= */
 @media (max-width: 640px){
 
-  /* viewport: sem padding (o JS calcula pelo clientWidth) */
   #dev-viewport,
   #design-viewport{
     padding-inline: 0 !important;
     overflow: hidden;
   }
 
-  /* track: sem w-max / sem gap */
   #dev-carousel,
   #design-carousel{
     width: 100%;
@@ -330,26 +306,21 @@ html.dark .carousel-nav:hover{
     gap: 0 !important;
   }
 
-  /* slide: SEMPRE 100% da viewport */
   #dev-carousel .carousel-slide,
   #design-carousel .carousel-slide{
     flex: 0 0 100%;
     width: 100%;
     max-width: 100%;
-
-    /* respiro agora é aqui dentro */
     padding-inline: 16px;
     box-sizing: border-box;
   }
 
-  /* preview ocupa a área útil do slide */
   .project-preview{
     width: 100%;
     height: clamp(220px, 38vh, 300px);
     border-radius: 18px;
   }
 
-  /* meta: não precisa padding (já está no slide) */
   .project-meta{
     width: 100%;
     max-width: none;
@@ -371,7 +342,6 @@ html.dark .carousel-nav:hover{
     max-width: 160px;
   }
 
-  /* setas: alinhadas com o padding interno visual */
   .carousel-nav{
     width: 40px;
     height: 40px;
@@ -380,25 +350,20 @@ html.dark .carousel-nav:hover{
   .carousel-nav.right{ right: 10px; }
 }
 
-
 /* =========================
-   MOBILE BAIXO (iPhone SE etc)
+   MOBILE BAIXO (altura curta)
    ========================= */
-
 @media (max-width: 640px) and (max-height: 700px){
 
-  /* reduz top do header (pt-24 do tailwind) */
   #dev-projects header,
   #design-projects header{
     padding-top: 72px !important;
   }
 
-  /* preview menor pra caber */
   .project-preview{
     height: clamp(170px, 26vh, 240px) !important;
   }
 
-  /* comprime meta */
   .project-meta{
     margin-top: .9rem !important;
     gap: .75rem !important;
@@ -429,7 +394,6 @@ html.dark .carousel-nav:hover{
     font-size: .8rem !important;
   }
 
-  /* setas menores e levemente mais pra cima */
   .carousel-nav{
     width: 36px !important;
     height: 36px !important;
@@ -437,25 +401,14 @@ html.dark .carousel-nav:hover{
   }
 }
 
-@media (max-width: 1048px){
-  #design-projects > div > header,
-  #dev-projects > div > header{
-    padding-top: 84px !important;
-    padding-bottom: 14px !important;
-  }
-}
-
 /* =========================
    MOBILE: snap só entre Design <-> Dev
    ========================= */
-
-/* 1) No MOBILE, o main NÃO snapa (mas no desktop continua igual) */
 @media (max-width: 767px){
   main{
     scroll-snap-type: none !important;
   }
 
-  /* 2) Só o wrapper dos projects snapa */
   #projectsSnapWrap{
     scroll-snap-type: y mandatory;
   }
@@ -467,28 +420,23 @@ html.dark .carousel-nav:hover{
 }
 
 /* =========================
-   MOBILE: chip sticky e conteúdo abaixo (estável com i18n)
+   MOBILE: chip sticky e conteúdo abaixo
    ========================= */
 @media (max-width: 1048px){
 
-  /* deixa o container da section com contexto pro sticky funcionar bem */
   #design-projects > div,
   #dev-projects > div{
     height: 100%;
   }
 
-  /* header do chip vira sticky dentro da section */
   #design-projects > div > header,
   #dev-projects > div > header{
     position: sticky;
-    top: 64px;             /* ajuste fino: evita ficar embaixo do header fixo */
+    top: 64px;
     z-index: 40;
-
-    /* remove “dança” de padding quando reflow */
-    padding-top: 24px !important;   /* mantém respiro interno do chip */
+    padding-top: 24px !important;
     padding-bottom: 12px !important;
 
-    /* “shield” visual atrás do chip (dark e light) */
     background: rgba(0,0,0,0.35);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -499,39 +447,30 @@ html.dark .carousel-nav:hover{
     background: rgba(255,255,255,0.65);
   }
 
-  /* conteúdo sempre começa abaixo do header sticky */
   #design-projects > div > .flex-1,
   #dev-projects > div > .flex-1{
     align-items: flex-start !important;
-    padding-top: 10px; /* garante que nunca encosta no chip */
+    padding-top: 10px;
     min-height: 0;
   }
 
-  /* chip: sem translate no mobile (você já tem) e sem “pular” */
   #design-projects .section-chip,
   #dev-projects .section-chip{
     transform: none !important;
     margin-top: 0 !important;
   }
-} 
+}
 
-/* =========================
-   MOBILE: conteúdo começa abaixo do chip sticky
-   ========================= */
 @media (max-width: 1048px){
-
-  /* altura aproximada do header/chip (ajuste fino) */
   :root{
-    --projects-chip-h: 86px; /* teste 78~96 */
+    --projects-chip-h: 86px;
   }
 
-  /* empurra o conteúdo (viewport + setas + slide) pra baixo */
   #design-projects > div > .flex-1,
   #dev-projects > div > .flex-1{
     padding-top: var(--projects-chip-h) !important;
   }
 
-  /* garante que o sticky não “coma” clique/visual */
   #design-projects > div > header,
   #dev-projects > div > header{
     margin-bottom: 0 !important;
@@ -540,28 +479,78 @@ html.dark .carousel-nav:hover{
 
 @media (max-width: 1048px){
   .dev-bottom-space{
-    height: 56px; /* 32 / 48 / 64 */
+    height: 56px;
     flex: 0 0 auto;
   }
 }
 
-
 /* =========================
-   DESKTOP — empurrar chip e empurrar o resto junto
-   (sem mexer em snap/global)
+   DESKTOP: evitar scroll interno (duas rolagens)
    ========================= */
 @media (min-width: 1049px){
 
-  /* remove o deslocamento fake */
+  :root{
+    --topbar-h: 90px; /* altura do header fixo */
+  }
+
+  /* section segue 100vh (snap estável) e cria espaço pro header fixo */
+  #design-projects,
+  #dev-projects{
+    height: 100vh;
+    padding-top: var(--topbar-h);
+    box-sizing: border-box;
+  }
+
+  /* wrapper interno ocupa a section (sem margin-top que cria overflow) */
+  #design-projects > div,
+  #dev-projects > div{
+    height: 100%;
+    margin-top: 0px !important;
+  }
+
+  /* chip sem translate no desktop */
   #design-projects .section-chip,
   #dev-projects .section-chip{
     transform: none !important;
   }
 
-  /* empurra o header de verdade (layout) */
-  #design-projects > div > header.section-head,
-  #dev-projects > div > header.section-head{
-    padding-top: 120px !important;  /* <-- ajuste fino aqui (X px) */
-    padding-bottom: 18px !important;
+  #dev-projects .section-chip{
+  margin-top: 20px;
+  }
+
+  #design-projects .section-chip{
+  margin-top: 20px;
+  }
+
+  /* evita qualquer scroll vertical interno nesses blocos */
+  #design-projects,
+  #dev-projects,
+  #design-projects > div,
+  #dev-projects > div,
+  #design-projects #design-viewport,
+  #dev-projects #dev-viewport{
+    overflow-y: visible !important;
+  }
+
+
+
+  #design-projects .project-meta,
+  #dev-projects .project-meta{
+    margin-top: 1.25rem;
+    gap: .75rem;
+  }
+
+
+  /* garante que o miolo use a altura útil sem empurrar e sem scroller */
+  #design-projects > div > .flex-1,
+  #dev-projects > div > .flex-1{
+    min-height: 0;
+    align-items: center;
+  }
+
+  /* setas um pouco mais altas */
+  #design-projects .carousel-nav,
+  #dev-projects .carousel-nav{
+    top: 44%;
   }
 }

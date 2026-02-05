@@ -1,7 +1,7 @@
 // js/config.demo.js
 window.__PORTFOLIO__ = {
   email: "myd.artcore@gmail.com",
-  location: "São Paulo, Brazil",
+  location: "São Paulo, Brasil",
   responseTime: "24h",
   cvUrl: "https://drive.google.com/file/d/11nVcE03LmTQo1RC66LpXFohjDtNdbCkb/view?usp=sharing",
   images: {
